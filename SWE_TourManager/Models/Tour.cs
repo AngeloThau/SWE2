@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace SWE_TourManager.Models
 {
-    class MainWindowModel
+    class Tour
     {
 
-        public void btn_click()
-        {
-            //here is code
-        }
+        public string Name { get; set; }
 
     }
 }

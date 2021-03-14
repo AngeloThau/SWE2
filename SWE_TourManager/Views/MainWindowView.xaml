@@ -3,9 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels"
         xmlns:local="clr-namespace:SWE_TourManager"
         mc:Ignorable="d"
         Title="Tour Manager" Height="450" Width="800">
+
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
 
@@ -22,7 +28,7 @@
 
         
         <TextBox  Grid.Column ="1" >Suchfeld</TextBox>
-        <TextBlock Grid.RowSpan="2">Map von Tour</TextBlock>
+        <Image Grid.RowSpan="2"  Source="https://upload.wikimedia.org/wikipedia/commons/3/30/Googlelogo.png"></Image>
         <TextBlock Grid.Column="1" Grid.Row="1">Info zu Tour (Sterne, Beschreibung)</TextBlock>
         <TextBlock Grid.Row="2" Grid.ColumnSpan="2">Logs zu der aktuellen Tour</TextBlock>
 
@@ -37,7 +43,7 @@
 
             <Label>Liste aller Touren:</Label>
             <ListBox Grid.Row="1">
-                <ListBoxItem> Tour 1</ListBoxItem>
+                <ListBoxItem>Tour 1</ListBoxItem>
                 <ListBoxItem>Tour 2</ListBoxItem>
                 <ListBoxItem>Tour 3</ListBoxItem>
             </ListBox>
