@@ -2,19 +2,29 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SWE_TourManager.ViewModels
 {
-    public class ViewModelBase :INotifyPropertyChanged
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void TriggerPropertyChangedEvent(string propertyName)
+        protected void RaisePropertyChangedEvent([CallerMemberName] string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ValidatePropertyName(propertyName);
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-        public string ViewName { get; protected set; }
+
+        protected void ValidatePropertyName(string propertyName)
+        {
+            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+            {
+                throw new ArgumentException("Invalid propery name: " + propertyName);
+            }
+        }
     }
 }

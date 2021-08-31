@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels"
+        xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels" d:DataContext="{d:DesignInstance Type=ViewModels:MainWindowViewModel}"
         xmlns:local="clr-namespace:SWE_TourManager"
         mc:Ignorable="d"
         Title="Tour Manager" Height="450" Width="800">
@@ -11,45 +11,26 @@
     <Window.DataContext>
         <ViewModels:MainWindowViewModel/>
     </Window.DataContext>
-    
+
     <Grid>
-        <Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Media Item List:" Margin="5"></TextBlock>
 
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1.5*" />
-            <ColumnDefinition Width="0.75*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.25*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="1*" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-        </Grid.RowDefinitions>
-
+                <TextBlock Grid.Column="0" Text="Name" Margin="0,0,5,0" VerticalAlignment="Center"></TextBlock>
+                <TextBox Grid.Column="1" Name="txtSearchName" VerticalAlignment="Center" Text="{Binding SearchName, Mode=TwoWay}"></TextBox>
+                <Button Grid.Column="2" Width="50" Margin="5,0,0,0" Command="{Binding SearchCommand}">Search</Button>
+                <Button Grid.Column="3" Width="50" Margin="5,0,0,0" Command="{Binding ClearCommand}">Clear</Button>
+            </Grid>  
+        </StackPanel>
+        <ListBox x:Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" Margin="0,50,0,0"></ListBox>
         
-        <TextBox  Grid.Column ="1" >Suchfeld</TextBox>
-        <Image Grid.RowSpan="2"  Source="https://upload.wikimedia.org/wikipedia/commons/3/30/Googlelogo.png"></Image>
-        <TextBlock Grid.Column="1" Grid.Row="1">Info zu Tour (Sterne, Beschreibung)</TextBlock>
-        <TextBlock Grid.Row="2" Grid.ColumnSpan="2">Logs zu der aktuellen Tour</TextBlock>
-
-        <Grid Grid.Column="2"  Grid.RowSpan="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="0.125*" />
-                <RowDefinition Height="0.125*" />
-            </Grid.RowDefinitions>
-
-            <Label>Liste aller Touren:</Label>
-            <ListBox Grid.Row="1">
-                <ListBoxItem>Tour 1</ListBoxItem>
-                <ListBoxItem>Tour 2</ListBoxItem>
-                <ListBoxItem>Tour 3</ListBoxItem>
-            </ListBox>
-            <Button Grid.Row="2">New Tour</Button>
-            <Button Grid.Row="3">Delete Tour</Button>
-        </Grid>
-
     </Grid>
 </Window>

@@ -4,28 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using SWE_TourManager.ViewModels.Commands;
 
 namespace SWE_TourManager.ViewModels
 {
-    class MainWindowViewModel 
+    public class MainWindowViewModel :ViewModelBase
     {
 
-        private ICommand textboxUpdate;
-        private ICommand button;
+        private ICommand searchCommand;
+        private ICommand clearCommand;
+        public ICommand SearchCommand => searchCommand ??= new RelayCommand(Search);
+        public ICommand ClearCommand => clearCommand ??= new RelayCommand(Clear);
 
-        private class Command : ICommand
+        public MainWindowViewModel()
         {
-            public event EventHandler CanExecuteChanged;
 
-            public bool CanExecute(object parameter)
-            {
-                throw new NotImplementedException();
-            }
+        }
 
-            public void Execute(object parameter)
-            {
-                throw new NotImplementedException();
-            }
+
+        private void Search(object commandParameter)
+        {
+        }
+
+        private void Clear(object commandParameter)
+        {
         }
 
     }
