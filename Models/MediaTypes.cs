@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SWE_TourManager.Models
 {
-    class Tour
+    public enum MediaTypes
     {
-
-        public string Name { get; set; }
-
+       TourItem = 0,
+       LogItem=1
     }
 }

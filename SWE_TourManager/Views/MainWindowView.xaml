@@ -51,7 +51,10 @@
                 <Button Grid.Column="1" Width="50" Margin="5,0,0,0" Command="{Binding SearchTourCommand}">Search</Button>
                 <Button Grid.Column="2" Width="50" Margin="5,0,5,0" Command="{Binding ClearTourCommand}">Clear</Button>
             </Grid>
-
+            <ListBox x:Name="TourListBox" ItemsSource="{Binding TourItems}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" Margin="0,5,0,0">
+                
+                
+            </ListBox>
         </StackPanel>
 
 
@@ -69,13 +72,16 @@
                 <Button Grid.Column="1" Width="50" Margin="5,0,0,0" Command="{Binding SearchLogCommand}">Search</Button>
                 <Button Grid.Column="2" Width="50" Margin="5,0,5,0" Command="{Binding ClearLogCommand}">Clear</Button>
             </Grid>
+            <ListBox x:Name="LogListBox" ItemsSource="{Binding LogItems}" SelectedItem="{Binding CurrentLog}" DisplayMemberPath="Name" Margin="0,5,0,0">
 
+
+            </ListBox>
 
         </StackPanel>
 
         <StackPanel Grid.Column="2">
             <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center">Route Info:</TextBlock>
-            <Image></Image>
+            <Image Source="https://i1.sndcdn.com/avatars-000458564547-85hlxb-t240x240.jpg" Height="150"></Image>
         </StackPanel>
 
 
@@ -94,11 +100,11 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="1" Name="TourName"  VerticalAlignment="Center" Text="{Binding CurrentTour.Name, Mode=TwoWay}"></TextBox>
-                <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Description:</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="1" Name="TourDescription"  VerticalAlignment="Center" Text="{Binding CurrentTour.Description, Mode=TwoWay}"></TextBox>
-                <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Distance:</TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="1" Name="TourInfo"  VerticalAlignment="Center" Text="{Binding CurrentTour.Distance, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="TourName"  VerticalAlignment="Center" Text="{Binding CurrentTour.Name, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Description:</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TourDescription"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentTour.Description, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="TourInfo"  VerticalAlignment="Center" Text="{Binding CurrentTour.Distance, Mode=TwoWay}"></TextBlock>
 
             </Grid>
 
@@ -126,25 +132,25 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="1" Name="LogDate"  VerticalAlignment="Center" Text="{Binding CurrentLog.Date, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="LogName"  VerticalAlignment="Center" Text="{Binding CurrentLog.Name, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance:</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="1" Name="LogDistance"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDistance, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="LogDistance"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDistance, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Total Time:</TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="1" Name="LogTime"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogTime, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="LogTime"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogTime, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="3" Margin="5,0,5,0" VerticalAlignment="Center">Rating:</TextBlock>
-                <TextBox Grid.Row="3" Grid.Column="1" Name="LogRating"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogRating, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="3" Grid.Column="1" Name="LogRating"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogRating, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="4" Margin="5,0,5,0" VerticalAlignment="Center">Avg. Speed:</TextBlock>
-                <TextBox Grid.Row="4" Grid.Column="1" Name="LogSpeed"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogSpeed, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="4" Grid.Column="1" Name="LogSpeed"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogSpeed, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="5" Margin="5,0,5,0" VerticalAlignment="Center">Vertical Meters (up):</TextBlock>
-                <TextBox Grid.Row="5" Grid.Column="1" Name="LogVerUp"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogVerUp, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="5" Grid.Column="1" Name="LogVerUp"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogVerUp, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="6" Margin="5,0,5,0" VerticalAlignment="Center">Vertical Meters (down):</TextBlock>
-                <TextBox Grid.Row="6" Grid.Column="1" Name="LogVerDown"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogVerDown, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="6" Grid.Column="1" Name="LogVerDown"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogVerDown, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="7" Margin="5,0,5,0" VerticalAlignment="Center">Difficulty:</TextBlock>
-                <TextBox Grid.Row="7" Grid.Column="1" Name="LogDiff"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDiff, Mode=TwoWay}"></TextBox>
-                <TextBlock Grid.Row="8" Margin="5,0,5,0" VerticalAlignment="Center">Joule:</TextBlock>
-                <TextBox Grid.Row="8" Grid.Column="1" Name="LogJoule"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogJoule, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="7" Grid.Column="1" Name="LogDiff"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDiff, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="8" Margin="5,0,5,0" VerticalAlignment="Center">Date:</TextBlock>
+                <TextBlock Grid.Row="8" Grid.Column="1" Name="LogDate"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDate, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="9" Margin="5,0,5,0" VerticalAlignment="Center">Report:</TextBlock>
-                <TextBox Grid.Row="9" Grid.Column="1" Name="LogReport"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogReport, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="9" Grid.Column="1" Name="LogReport"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentLog.LogReport, Mode=TwoWay}"></TextBlock>
 
             </Grid>
 

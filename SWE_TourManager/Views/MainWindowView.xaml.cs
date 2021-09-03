@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWE_TourManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace SWE_TourManager.Views
         public MainWindowView()
         {
             InitializeComponent();
-
+            this.DataContext = new MainWindowViewModel();
         }
 
     }

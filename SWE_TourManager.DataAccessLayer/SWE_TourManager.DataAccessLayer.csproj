@@ -1,14 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Models\SWE_TourManager.Models.csproj" />
-    <ProjectReference Include="..\SWE_TourManager.BusinessLayer\SWE_TourManager.BusinessLayer.csproj" />
   </ItemGroup>
 
 </Project>
