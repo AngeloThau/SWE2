@@ -15,9 +15,14 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
     {
         private IDatabase database;
 
-        private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Tours\" WHERE \"Id\"= @Id";
-        private const string SQL_GET_ALL_TOURS = "SELECT * FROM public.\"Tours\"";
-        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO public.\"Tours\" (\"TourName\", \"TourDescription\", \"TourDistance\" VALUES (@Name, @Description, @Distance) RETURNING \"Id\")";
+        private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Tours\" WHERE \"TourId\"= @Id;";
+        private const string SQL_GET_ALL_TOURS = "SELECT * FROM public.\"Tours\";";
+        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO public.\"Tours\" (\"TourName\", \"TourDescription\", \"TourDistance\") VALUES (@Name, @Description, @Distance) RETURNING \"TourId\";";
+
+        public TourItemPostgresDAO()
+        {
+            this.database = DALFactory.GetDatabase();
+        }
 
         public TourItemPostgresDAO(IDatabase database)
         {

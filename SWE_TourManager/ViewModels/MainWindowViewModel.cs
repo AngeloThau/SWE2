@@ -15,7 +15,7 @@ namespace SWE_TourManager.ViewModels
     public class MainWindowViewModel :ViewModelBase
     {
 
-        private ITourItemFactory tourItemFactory;
+        private ITourManagerFactory tourManagerFactory;
         private TourItem currentTour;
         private string searchTourName;
         private ICommand searchTourCommand;
@@ -54,7 +54,7 @@ namespace SWE_TourManager.ViewModels
 
         public MainWindowViewModel()
         {
-            this.tourItemFactory = TourItemFactory.GetInstance();
+            this.tourManagerFactory = TourManagerFactory.GetInstance();
             InitTourList();
             TourListFill();
         }
@@ -66,7 +66,7 @@ namespace SWE_TourManager.ViewModels
 
         private void TourListFill()
         {
-            foreach (TourItem tour in this.tourItemFactory.GetTourItems())
+            foreach (TourItem tour in this.tourManagerFactory.GetTourItems())
             {
                 TourItems.Add(tour);
             }
@@ -74,7 +74,7 @@ namespace SWE_TourManager.ViewModels
 
         private void SearchTour(object commandParameter)
         {
-            IEnumerable foundTourItems = this.tourItemFactory.SearchTours(SearchTourName);
+            IEnumerable foundTourItems = this.tourManagerFactory.SearchTours(SearchTourName);
             TourItems.Clear();
             foreach(TourItem tourItem in foundTourItems)
             {
@@ -91,6 +91,21 @@ namespace SWE_TourManager.ViewModels
             TourListFill();
         }
 
-        
+        private ICommand newTourCommand;
+        public ICommand NewTourCommand => newTourCommand ??= new RelayCommand(NewTour);
+
+        private void NewTour(object commandParameter)
+        {
+            TourItem generatedItem = tourManagerFactory.CreateTour("GeneratedTour", "Generated Description", 5.0);
+            TourItems.Add(generatedItem);
+        }
+
+        private ICommand createLogCommand;
+        public ICommand CreateLogCommand => createLogCommand ??= new RelayCommand(CreateLog);
+
+        private void CreateLog(object commandParameter)
+        {
+            LogItem generatedLog = tourManagerFactory.CreateLog("Generated Report", CurrentTour);
+        }
     }
 }

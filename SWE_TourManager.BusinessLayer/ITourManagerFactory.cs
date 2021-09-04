@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace SWE_TourManager.BusinessLayer
 {
-    public interface ITourItemFactory
+    public interface ITourManagerFactory
     {
         IEnumerable<TourItem> GetTourItems();
         IEnumerable<TourItem> SearchTours(string tourName, bool caseSensitive = false);
+        public TourItem CreateTour(string name, string description, double distance);
+        public LogItem CreateLog(string report, TourItem tour);
     }
 }

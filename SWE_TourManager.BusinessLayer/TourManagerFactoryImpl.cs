@@ -1,4 +1,6 @@
 ﻿using SWE_TourManager.DataAccessLayer;
+using SWE_TourManager.DataAccessLayer.Common;
+using SWE_TourManager.DataAccessLayer.DAO;
 using SWE_TourManager.Models;
 using System;
 using System.Collections.Generic;
@@ -8,13 +10,14 @@ using System.Threading.Tasks;
 
 namespace SWE_TourManager.BusinessLayer
 {
-    internal class TourItemFactoryImpl : ITourItemFactory
+    internal class TourManagerFactoryImpl : ITourManagerFactory
     {
-        private TourItemDAO tourItemDAO = new TourItemDAO();
+      
         
         public IEnumerable<TourItem> GetTourItems()
         {
-            return tourItemDAO.GetTourItems();
+            ITourDAO tourDAO = DALFactory.CreateTourDAO();
+            return tourDAO.GetTourItems();
         }
 
         public IEnumerable<TourItem> SearchTours(string tourName, bool caseSensitive = false)
@@ -27,5 +30,18 @@ namespace SWE_TourManager.BusinessLayer
             }
             return tourItem.Where(x => x.Name.ToLower().Contains(tourName.ToLower()));
         }
+
+        public TourItem CreateTour(string name, string description, double distance)
+        {
+            ITourDAO tourDAO = DALFactory.CreateTourDAO();
+            return tourDAO.AddNewItem(name, description, distance);
+        }
+
+        public LogItem CreateLog(string report, TourItem tour)
+        {
+            ILogDAO logDAO = DALFactory.CreateLogDAO();
+            return logDAO.AddNewLogItem(report, tour);
+        }
+
     }
 }

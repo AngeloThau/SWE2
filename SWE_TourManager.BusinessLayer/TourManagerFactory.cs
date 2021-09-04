@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace SWE_TourManager.BusinessLayer
 {
-    public static class TourItemFactory
+    public static class TourManagerFactory
     {
-        private static ITourItemFactory instance;
+        private static ITourManagerFactory instance;
 
-        public static ITourItemFactory GetInstance()
+        public static ITourManagerFactory GetInstance()
         {
             if(instance == null)
             {
-                instance = new TourItemFactoryImpl();
+                instance = new TourManagerFactoryImpl();
             }
             return instance;
         }

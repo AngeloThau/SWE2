@@ -13,12 +13,18 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 {
     public class LogItemPostgresDAO : ILogDAO
     {
-        private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Logs\" WHERE \"Id\"= @Id";
-        private const string SQL_FIND_BY_TOUR_ID = "SELECT * FROM public.\"Logs\" WHERE \"TourId\"= @TourId";
-        private const string SQL_INSERT_NEW_LOG = "INSERT INTO public.\"Logs\" (\"LogReport\", \"TourId\", VALUES (@Report, @TourId) RETURNING \"Id\")";
+        private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Logs\" WHERE \"LogId\"= @Id;";
+        private const string SQL_FIND_BY_TOUR_ID = "SELECT * FROM public.\"Logs\" WHERE \"TourId\"= @TourId;";
+        private const string SQL_INSERT_NEW_LOG = "INSERT INTO public.\"Logs\" (\"LogReport\", \"TourId\", VALUES (@Report, @TourId) RETURNING \"LogId\";";
 
         private IDatabase database;
         private ITourDAO tourDAO;
+
+        public LogItemPostgresDAO()
+        {
+            this.database = DALFactory.GetDatabase();
+            this.tourDAO = DALFactory.CreateTourDAO();
+        }
 
         public LogItemPostgresDAO(IDatabase database, ITourDAO tourDAO)
         {
@@ -48,7 +54,22 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
         public IEnumerable<LogItem> GetLogForTourItem(TourItem tour)
         {
             DbCommand getLogsCommand = database.CreateCommand(SQL_FIND_BY_TOUR_ID);
-            database.DeclareParameter(getLogsCommand, "@")
+            database.DefineParameter(getLogsCommand, "@TourId", DbType.Int32, tour.Id);
+            return QueryLogsFromDB(getLogsCommand);
+        }
+
+        private IEnumerable<LogItem> QueryLogsFromDB(DbCommand command)
+        {
+            List<LogItem> logItemList = new List<LogItem>();
+
+            using (IDataReader reader = database.ExecuteReader(command))
+            {
+                while (reader.Read())
+                {
+                    logItemList.Add(new LogItem((int)reader["LogId"], (string)reader["LogReport"], tourDAO.FindById((int)reader["TourId"])));
+                }
+            }
+            return logItemList;
         }
     }
 }

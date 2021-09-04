@@ -32,7 +32,7 @@
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding CopyTourCommand}">Copy Tour</Button>
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding ImportTourCommand}">Import Tour</Button>
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding ExportTourCommand}">Export Tour</Button>
-            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding CreateLogCommand}">Create Log</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding CreateLogCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}" >Create Log</Button>
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding PrintTourCommand}">Print Tour</Button>
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding DeleteTourCommand}">Delete Tour</Button>
         </StackPanel>
