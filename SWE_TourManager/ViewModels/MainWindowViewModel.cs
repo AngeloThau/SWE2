@@ -17,12 +17,21 @@ namespace SWE_TourManager.ViewModels
 
         private ITourManagerFactory tourManagerFactory;
         private TourItem currentTour;
+        private LogItem currentLog;
         private string searchTourName;
+        private string searchLogName;
         private ICommand searchTourCommand;
         private ICommand clearTourCommand;
+       
+        public ObservableCollection<TourItem> TourItems { get; set; }
+        public ObservableCollection<LogItem> LogItems { get; set; }
         public ICommand SearchTourCommand => searchTourCommand ??= new RelayCommand(SearchTour);
         public ICommand ClearTourCommand => clearTourCommand ??= new RelayCommand(ClearTour);
-        public ObservableCollection<TourItem> TourItems { get; set; }
+
+        private ICommand searchLogCommand;
+        public ICommand SearchLogCommand => searchLogCommand ??= new RelayCommand(SearchLog);
+        private ICommand clearLogCommand;
+        public ICommand ClearLogCommand => clearLogCommand ??= new RelayCommand(ClearLog);
         public TourItem CurrentTour
         {
             get
@@ -35,6 +44,7 @@ namespace SWE_TourManager.ViewModels
                 {
                     currentTour = value;
                     RaisePropertyChangedEvent(nameof(CurrentTour));
+                    LogListFill();
                 }
             }
         }
@@ -57,6 +67,7 @@ namespace SWE_TourManager.ViewModels
             this.tourManagerFactory = TourManagerFactory.GetInstance();
             InitTourList();
             TourListFill();
+            InitLogList();           
         }
 
         private void InitTourList()
@@ -105,7 +116,67 @@ namespace SWE_TourManager.ViewModels
 
         private void CreateLog(object commandParameter)
         {
-            LogItem generatedLog = tourManagerFactory.CreateLog("Generated Report", CurrentTour);
+            LogItem generatedLog = tourManagerFactory.CreateLog(CurrentTour, "generatedName", 2.1, 34, 2, 21, 24, 50, 4, DateTime.Now, "Generated Report" );
         }
+
+        public LogItem CurrentLog
+        {
+            get
+            {
+                return currentLog;
+            }
+            set
+            {
+                if ((currentLog != value) && (value != null))
+                {
+                    currentLog = value;
+                    RaisePropertyChangedEvent(nameof(CurrentLog));
+                }
+            }
+        }
+
+        private void InitLogList()
+        {
+            LogItems = new ObservableCollection<LogItem>();
+        }
+
+        private void LogListFill()
+        {
+            foreach (LogItem log in this.tourManagerFactory.GetLogForTourItem(CurrentTour))
+            {
+                LogItems.Add(log);
+            }
+        }
+        public string SearchLogName
+        {
+            get { return searchLogName; }
+            set
+            {
+                if ((searchLogName != value) && (value != null))
+                {
+                    searchLogName = value;
+                    RaisePropertyChangedEvent(nameof(SearchLogName));
+                }
+            }
+        }
+        private void SearchLog(object commandParameter)
+        {
+            IEnumerable foundLogItems = this.tourManagerFactory.SearchLogs(CurrentTour, SearchLogName);
+            LogItems.Clear();
+            foreach (LogItem logItem in foundLogItems)
+            {
+                LogItems.Add(logItem);
+            }
+        }
+
+
+        private void ClearLog(object commandParameter)
+        {
+            LogItems.Clear();
+            SearchLogName = "";
+
+            LogListFill();
+        }
+
     }
 }

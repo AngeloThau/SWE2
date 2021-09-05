@@ -10,7 +10,7 @@ namespace SWE_TourManager.DataAccessLayer.DAO
     public interface ILogDAO
     {
         LogItem FindById(int logId);
-        LogItem AddNewLogItem(string report, TourItem logTourItem);
+        LogItem AddNewLogItem(TourItem logTourItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport);
         IEnumerable<LogItem> GetLogForTourItem(TourItem tour);
     }
 }

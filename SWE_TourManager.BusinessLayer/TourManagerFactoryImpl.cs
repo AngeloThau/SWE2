@@ -37,11 +37,29 @@ namespace SWE_TourManager.BusinessLayer
             return tourDAO.AddNewItem(name, description, distance);
         }
 
-        public LogItem CreateLog(string report, TourItem tour)
+        public LogItem CreateLog(TourItem logTourItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport)
         {
             ILogDAO logDAO = DALFactory.CreateLogDAO();
-            return logDAO.AddNewLogItem(report, tour);
+            return logDAO.AddNewLogItem(logTourItem, logName, logDistance, logTime, logRating, logSpeed, logVerUp, logVerDown, logDiff, logDate, logReport);
         }
+
+        public IEnumerable<LogItem> GetLogForTourItem(TourItem tour)
+        {
+            ILogDAO logDAO = DALFactory.CreateLogDAO();
+            return logDAO.GetLogForTourItem(tour);
+        }
+
+        public IEnumerable<LogItem> SearchLogs(TourItem tour, string logName, bool caseSensitive = false)
+        {
+            IEnumerable<LogItem> logItem = GetLogForTourItem(tour);
+
+            if (caseSensitive)
+            {
+                return logItem.Where(x => x.LogName.Contains(logName));
+            }
+            return logItem.Where(x => x.LogName.ToLower().Contains(logName.ToLower()));
+        }
+
 
     }
 }

@@ -72,7 +72,7 @@
                 <Button Grid.Column="1" Width="50" Margin="5,0,0,0" Command="{Binding SearchLogCommand}">Search</Button>
                 <Button Grid.Column="2" Width="50" Margin="5,0,5,0" Command="{Binding ClearLogCommand}">Clear</Button>
             </Grid>
-            <ListBox x:Name="LogListBox" ItemsSource="{Binding LogItems}" SelectedItem="{Binding CurrentLog}" DisplayMemberPath="Name" Margin="0,5,0,0">
+            <ListBox x:Name="LogListBox" ItemsSource="{Binding LogItems}" SelectedItem="{Binding CurrentLog}" DisplayMemberPath="LogName" Margin="0,5,0,0">
 
 
             </ListBox>
@@ -132,7 +132,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="1" Name="LogName"  VerticalAlignment="Center" Text="{Binding CurrentLog.Name, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="LogName"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogName, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Name="LogDistance"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDistance, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Total Time:</TextBlock>
@@ -148,7 +148,7 @@
                 <TextBlock Grid.Row="7" Margin="5,0,5,0" VerticalAlignment="Center">Difficulty:</TextBlock>
                 <TextBlock Grid.Row="7" Grid.Column="1" Name="LogDiff"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDiff, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="8" Margin="5,0,5,0" VerticalAlignment="Center">Date:</TextBlock>
-                <TextBlock Grid.Row="8" Grid.Column="1" Name="LogDate"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDate, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="8" Grid.Column="1" Name="LogDate"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDateTime, Mode=TwoWay}"></TextBlock>
                 <TextBlock Grid.Row="9" Margin="5,0,5,0" VerticalAlignment="Center">Report:</TextBlock>
                 <TextBlock Grid.Row="9" Grid.Column="1" Name="LogReport"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentLog.LogReport, Mode=TwoWay}"></TextBlock>
 
