@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using SWE_TourManager.Models;
 using SWE_TourManager.BusinessLayer;
 using System.Collections;
+using SWE_TourManager.Views;
 
 namespace SWE_TourManager.ViewModels
 {
@@ -44,6 +45,7 @@ namespace SWE_TourManager.ViewModels
                 {
                     currentTour = value;
                     RaisePropertyChangedEvent(nameof(CurrentTour));
+                    LogItems.Clear();
                     LogListFill();
                 }
             }
@@ -107,8 +109,10 @@ namespace SWE_TourManager.ViewModels
 
         private void NewTour(object commandParameter)
         {
-            TourItem generatedItem = tourManagerFactory.CreateTour("GeneratedTour", "Generated Description", 5.0);
-            TourItems.Add(generatedItem);
+            CreateTour window = new CreateTour();
+            window.Show();
+            //TourItem generatedItem = tourManagerFactory.CreateTour("GeneratedTour", "Generated Description", 5.0);
+            //TourItems.Add(generatedItem);
         }
 
         private ICommand createLogCommand;
@@ -116,7 +120,9 @@ namespace SWE_TourManager.ViewModels
 
         private void CreateLog(object commandParameter)
         {
-            LogItem generatedLog = tourManagerFactory.CreateLog(CurrentTour, "generatedName", 2.1, 34, 2, 21, 24, 50, 4, DateTime.Now, "Generated Report" );
+            CreateLog window = new CreateLog(CurrentTour);
+            window.Show();
+            //LogItem generatedLog = tourManagerFactory.CreateLog(CurrentTour, "generatedName", 2.1, 34, 2, 21, 24, 50, 4, DateTime.Now, "Generated Report" );
         }
 
         public LogItem CurrentLog
