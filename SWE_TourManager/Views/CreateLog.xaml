@@ -27,13 +27,13 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Name="LogName"  VerticalAlignment="Center" Text="{Binding NewLogName}"></TextBox>
-        <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance:</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Name="LogDistance"  VerticalAlignment="Center" Text="{Binding NewLogDistance}"></TextBox>
-        <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Total Time:</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" Name="LogTime"  VerticalAlignment="Center" Text="{Binding NewLogTime}"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="LogName"  VerticalAlignment="Center" Text="{Binding Path=NewLogName}"></TextBox>
+        <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance (Meters):</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="LogDistance"  VerticalAlignment="Center" Text="{Binding Path=NewLogDistance}"></TextBox>
+        <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Total Time (Minutes):</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="LogTime"  VerticalAlignment="Center" Text="{Binding Path=NewLogTime}"></TextBox>
         <TextBlock Grid.Row="3" Margin="5,0,5,0" VerticalAlignment="Center">Rating (10 is Best):</TextBlock>
-        <ComboBox Grid.Row="3" Grid.Column="1" Name="LogRating"  VerticalAlignment="Center" Text="{Binding NewLogRating}" >
+        <ComboBox Grid.Row="3" Grid.Column="1" Name="LogRating"  VerticalAlignment="Center" Text="{Binding Path=NewLogRating}" >
                 <ComboBoxItem IsSelected="True">1</ComboBoxItem>
                 <ComboBoxItem >2</ComboBoxItem>
                 <ComboBoxItem >3</ComboBoxItem>
@@ -46,13 +46,13 @@
                 <ComboBoxItem >10</ComboBoxItem>
         </ComboBox>
         <TextBlock Grid.Row="4" Margin="5,0,5,0" VerticalAlignment="Center">Avg. Speed:</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" Name="LogSpeed"  VerticalAlignment="Center" Text="{Binding NewLogSpeed}"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="LogSpeed"  VerticalAlignment="Center" Text="{Binding Path=NewLogSpeed}"></TextBox>
         <TextBlock Grid.Row="5" Margin="5,0,5,0" VerticalAlignment="Center">Vertical Meters (up):</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1" Name="LogVerUp"  VerticalAlignment="Center" Text="{Binding NewLogVerUp}"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="LogVerUp"  VerticalAlignment="Center" Text="{Binding Path=NewLogVerUp}"></TextBox>
         <TextBlock Grid.Row="6" Margin="5,0,5,0" VerticalAlignment="Center">Vertical Meters (down):</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="1" Name="LogVerDown"  VerticalAlignment="Center" Text="{Binding NewLogVerDown}"></TextBox>
+        <TextBox Grid.Row="6" Grid.Column="1" Name="LogVerDown"  VerticalAlignment="Center" Text="{Binding Path=NewLogVerDown}"></TextBox>
         <TextBlock Grid.Row="7" Margin="5,0,5,0" VerticalAlignment="Center">Difficulty (10 is Hardest):</TextBlock>
-            <ComboBox Grid.Row="3" Grid.Column="1" Name="LogDiff"  VerticalAlignment="Center" Text="{Binding NewLogDiff}" >
+            <ComboBox Grid.Row="7" Grid.Column="1" Name="LogDiff"  VerticalAlignment="Center" Text="{Binding Path=NewLogDiff}" >
                 <ComboBoxItem IsSelected="True">1</ComboBoxItem>
                 <ComboBoxItem >2</ComboBoxItem>
                 <ComboBoxItem >3</ComboBoxItem>
@@ -64,10 +64,10 @@
                 <ComboBoxItem >9</ComboBoxItem>
                 <ComboBoxItem >10</ComboBoxItem>
             </ComboBox>
-            <TextBlock Grid.Row="8" Margin="5,0,5,0" VerticalAlignment="Center">Date (DD/MM/YYYY):</TextBlock>
-        <TextBox Grid.Row="8" Grid.Column="1" Name="LogDate"  VerticalAlignment="Center" Text="{Binding NewLogDate}"></TextBox>
+            <TextBlock Grid.Row="8" Margin="5,0,5,0" VerticalAlignment="Center">Date:</TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="1" Name="LogDate"  VerticalAlignment="Center" Text="{Binding Path=NewLogDate}"></TextBlock>
         <TextBlock Grid.Row="9" Margin="5,0,5,0" VerticalAlignment="Center">Report:</TextBlock>
-        <TextBox Grid.Row="9" Grid.Column="1" Name="LogReport"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding NewLogReport}"></TextBox>
+        <TextBox Grid.Row="9" Grid.Column="1" Name="LogReport"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=NewLogReport}"></TextBox>
 
     </Grid>
 
