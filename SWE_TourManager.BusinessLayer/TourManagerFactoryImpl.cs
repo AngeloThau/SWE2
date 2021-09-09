@@ -31,10 +31,10 @@ namespace SWE_TourManager.BusinessLayer
             return tourItem.Where(x => x.Name.ToLower().Contains(tourName.ToLower()));
         }
 
-        public TourItem CreateTour(string name, string description, double distance)
+        public TourItem CreateTour(string name, string description, double distance, string start, string destination, string imgPath)
         {
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
-            return tourDAO.AddNewItem(name, description, distance);
+            return tourDAO.AddNewItem(name, description, distance, start, destination, imgPath);
         }
 
         public LogItem CreateLog(TourItem logTourItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport)

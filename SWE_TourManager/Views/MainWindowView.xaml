@@ -81,7 +81,7 @@
 
         <StackPanel Grid.Column="2">
             <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center">Route Info:</TextBlock>
-            <Image Source="https://i1.sndcdn.com/avatars-000458564547-85hlxb-t240x240.jpg" Height="150"></Image>
+            <Image Source="{Binding CurrentTour.ImgPath}" Height="150"></Image>
         </StackPanel>
 
 

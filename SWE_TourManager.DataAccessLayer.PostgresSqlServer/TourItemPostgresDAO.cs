@@ -17,7 +17,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Tours\" WHERE \"TourId\"= @Id;";
         private const string SQL_GET_ALL_TOURS = "SELECT * FROM public.\"Tours\";";
-        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO public.\"Tours\" (\"TourName\", \"TourDescription\", \"TourDistance\") VALUES (@Name, @Description, @Distance) RETURNING \"TourId\";";
+        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO public.\"Tours\" (\"TourName\", \"TourDescription\", \"TourDistance\", \"TourStart\" , \"TourDestination\" , \"TourImgPath\") VALUES (@Name, @Description, @Distance, @Start, @Destination, @ImgPath) RETURNING \"TourId\";";
 
         public TourItemPostgresDAO()
         {
@@ -29,12 +29,16 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
             this.database = database;
         }
 
-        public TourItem AddNewItem(string name, string description, double distance)
+        public TourItem AddNewItem(string name, string description, double distance, string start, string destination, string imgPath)
         {
             DbCommand instertCommand = database.CreateCommand(SQL_INSERT_NEW_TOUR);
             database.DefineParameter(instertCommand, "@Name", DbType.String, name);
             database.DefineParameter(instertCommand, "@Description", DbType.String, description);
             database.DefineParameter(instertCommand, "@Distance", DbType.Double, distance);
+            database.DefineParameter(instertCommand, "@Start", DbType.String, start);
+            database.DefineParameter(instertCommand, "@Destination", DbType.String, destination);
+            database.DefineParameter(instertCommand, "@ImgPath", DbType.String, imgPath);
+
 
             return FindById(database.ExecuteScalar(instertCommand));
         }
@@ -64,7 +68,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
             {
                 while (reader.Read())
                 {
-                    tourItemList.Add(new TourItem((int)reader["TourId"], (string)reader["TourName"], (string)reader["TourDescription"],  (double)reader["TourDistance"]));
+                    tourItemList.Add(new TourItem((int)reader["TourId"], (string)reader["TourName"], (string)reader["TourDescription"],  (double)reader["TourDistance"], (string)reader["TourImgPath"]));
                 }
             }
 

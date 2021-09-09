@@ -13,7 +13,7 @@ namespace SWE_TourManager.BusinessLayer
         IEnumerable<LogItem> GetLogForTourItem(TourItem tour);
         IEnumerable<TourItem> SearchTours(string tourName, bool caseSensitive = false);
         IEnumerable<LogItem> SearchLogs(TourItem tour, string logName, bool caseSensitive = false);
-        public TourItem CreateTour(string name, string description, double distance);
+        public TourItem CreateTour(string name, string description, double distance, string start, string destination, string imgPath);
         public LogItem CreateLog(TourItem logTourItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport);
     }
 }

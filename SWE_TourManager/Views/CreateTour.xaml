@@ -6,7 +6,7 @@
         xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels" d:DataContext="{d:DesignInstance Type=ViewModels:CreateTourVM}"
         xmlns:local="clr-namespace:SWE_TourManager.Views"
         mc:Ignorable="d"
-        Title="CreateTour" Height="250" Width="500">
+        Title="CreateTour" Height="150" Width="400">
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -17,20 +17,17 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition> 
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="1" Name="TourName"  VerticalAlignment="Center" Text="{}"></TextBox>
-            <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Description:</TextBlock>
-            <TextBox Grid.Row="2" Grid.Column="1" Name="TourDescription"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{}"></TextBox>
-            <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance:</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="TourDistance"  VerticalAlignment="Center" Text="{}"></TextBox>
-            <TextBlock Grid.Row="3" Margin="5,0,5,0" VerticalAlignment="Center">Start:</TextBlock>
-            <TextBox Grid.Row="3" Grid.Column="1" Name="TourStart"  VerticalAlignment="Center" Text="{}"></TextBox>
-            <TextBlock Grid.Row="4" Margin="5,0,5,0" VerticalAlignment="Center">Goal:</TextBlock>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="TourGoal"  VerticalAlignment="Center" Text="{}"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="TourName"  VerticalAlignment="Center" Text="{Binding NewTourName, Mode=TwoWay}"></TextBox>
+            <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Description:</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="TourDescription"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding NewTourDescription, Mode=TwoWay}"></TextBox>
+            <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Start:</TextBlock>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="TourStart"  VerticalAlignment="Center" Text="{Binding NewTourStart, Mode=TwoWay}"></TextBox>
+            <TextBlock Grid.Row="3" Margin="5,0,5,0" VerticalAlignment="Center">Destination:</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="1" Name="TourGoal"  VerticalAlignment="Center" Text="{Binding NewTourDestination, Mode=TwoWay}"></TextBox>
 
         </Grid>
 

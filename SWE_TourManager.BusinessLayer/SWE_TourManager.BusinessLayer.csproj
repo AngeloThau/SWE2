@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Models\SWE_TourManager.Models.csproj" />
     <ProjectReference Include="..\SWE_TourManager.DataAccessLayer.PostgresSqlServer\SWE_TourManager.DataAccessLayer.PostgresSqlServer.csproj" />
     <ProjectReference Include="..\SWE_TourManager.DataAccessLayer\SWE_TourManager.DataAccessLayer.csproj" />

@@ -11,7 +11,7 @@ namespace SWE_TourManager.DataAccessLayer.DAO
     {
         TourItem FindById(int itemId);
 
-        TourItem AddNewItem(string name, string description, double distance);
+        TourItem AddNewItem(string name, string description, double distance, string start, string destination, string imgPath);
         IEnumerable<TourItem> GetTourItems();
     }
 }
