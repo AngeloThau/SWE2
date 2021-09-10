@@ -64,6 +64,14 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
             
         }
 
+        public int ExecuteNonQuery(DbCommand command)
+        {
+
+            command.Connection = CreateConnection();
+            return command.ExecuteNonQuery();
+
+        }
+
         private DbConnection CreateConnection()
         {
             DbConnection connection = new NpgsqlConnection(this.connectionString);
@@ -71,5 +79,6 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
             return connection;
         }
+
     }
 }

@@ -10,6 +10,7 @@ using SWE_TourManager.Models;
 using SWE_TourManager.BusinessLayer;
 using System.Collections;
 using SWE_TourManager.Views;
+using System.Windows;
 
 namespace SWE_TourManager.ViewModels
 {
@@ -110,9 +111,7 @@ namespace SWE_TourManager.ViewModels
         private void NewTour(object commandParameter)
         {
             CreateTour window = new CreateTour();
-            window.Show();
-            //TourItem generatedItem = tourManagerFactory.CreateTour("GeneratedTour", "Generated Description", 5.0);
-            //TourItems.Add(generatedItem);
+            window.Show();            
         }
 
         private ICommand createLogCommand;
@@ -121,8 +120,7 @@ namespace SWE_TourManager.ViewModels
         private void CreateLog(object commandParameter)
         {
             CreateLog window = new CreateLog(CurrentTour);
-            window.Show();
-            //LogItem generatedLog = tourManagerFactory.CreateLog(CurrentTour, "generatedName", 2.1, 34, 2, 21, 24, 50, 4, DateTime.Now, "Generated Report" );
+            window.Show();           
         }
 
         public LogItem CurrentLog
@@ -184,5 +182,34 @@ namespace SWE_TourManager.ViewModels
             LogListFill();
         }
 
+        private ICommand deleteTourCommand;
+        public ICommand DeleteTourCommand => deleteTourCommand ??= new RelayCommand(DeleteTour);
+
+        private void DeleteTour(object commandParameter)
+        {
+            tourManagerFactory.DeleteTour(currentTour);
+            MessageBox.Show("Tour has been Deleted");
+            LogItems.Clear();
+            TourItems.Clear();
+            TourListFill();
+        }
+
+        private ICommand modifyTourCommand;
+        public ICommand ModifyTourCommand => modifyTourCommand ??= new RelayCommand(ModifyTour);
+
+        private void ModifyTour(object commandParameter)
+        {
+            ModifyTour window = new ModifyTour(CurrentTour);
+            window.Show();
+        }
+
+        private ICommand copyTourCommand;
+        public ICommand CopyTourCommand => copyTourCommand ??= new RelayCommand(CopyTour);
+
+        private void CopyTour(object commandParameter)
+        {
+            CopyTour window = new CopyTour(CurrentTour);
+            window.Show();
+        }
     }
 }

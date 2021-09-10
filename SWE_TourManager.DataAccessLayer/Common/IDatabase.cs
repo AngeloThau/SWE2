@@ -17,5 +17,6 @@ namespace SWE_TourManager.DataAccessLayer.Common
 
         IDataReader ExecuteReader(DbCommand command);
         int ExecuteScalar(DbCommand command);
+        int ExecuteNonQuery(DbCommand command);
     }
 }

@@ -60,6 +60,19 @@ namespace SWE_TourManager.BusinessLayer
             return logItem.Where(x => x.LogName.ToLower().Contains(logName.ToLower()));
         }
 
+        public TourItem ModifyTour(string name, string description, int id)
+        {
+            ITourDAO tourDAO = DALFactory.CreateTourDAO();
+            return tourDAO.ModifyTourItem(name, description, id);
+        }
 
+        public void DeleteTour(TourItem tour)
+        {
+            ILogDAO logDAO = DALFactory.CreateLogDAO();
+            ITourDAO tourDAO = DALFactory.CreateTourDAO();
+
+            logDAO.DeleteTourLogs(tour);
+            tourDAO.DeleteTourItem(tour.Id);
+        }
     }
 }

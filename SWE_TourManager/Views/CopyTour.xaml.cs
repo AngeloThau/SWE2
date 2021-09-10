@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SWE_TourManager.Models;
+using SWE_TourManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +17,14 @@ using System.Windows.Shapes;
 namespace SWE_TourManager.Views
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for CopyTour.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class CopyTour : Window
     {
-        public Window1()
+        public CopyTour(TourItem tour)
         {
             InitializeComponent();
+            this.DataContext = new CopyTourVM(tour);
         }
     }
 }

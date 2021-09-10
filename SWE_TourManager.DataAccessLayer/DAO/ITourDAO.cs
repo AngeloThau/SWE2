@@ -9,9 +9,11 @@ namespace SWE_TourManager.DataAccessLayer.DAO
 {
     public interface ITourDAO
     {
-        TourItem FindById(int itemId);
+        TourItem FindById(int tourId);
 
         TourItem AddNewItem(string name, string description, double distance, string start, string destination, string imgPath);
+        TourItem ModifyTourItem(string name, string description, int id);
+        int DeleteTourItem(int tourId);
         IEnumerable<TourItem> GetTourItems();
     }
 }

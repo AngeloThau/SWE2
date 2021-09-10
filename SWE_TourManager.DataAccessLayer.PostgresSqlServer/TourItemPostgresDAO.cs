@@ -18,6 +18,8 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
         private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Tours\" WHERE \"TourId\"= @Id;";
         private const string SQL_GET_ALL_TOURS = "SELECT * FROM public.\"Tours\";";
         private const string SQL_INSERT_NEW_TOUR = "INSERT INTO public.\"Tours\" (\"TourName\", \"TourDescription\", \"TourDistance\", \"TourStart\" , \"TourDestination\" , \"TourImgPath\") VALUES (@Name, @Description, @Distance, @Start, @Destination, @ImgPath) RETURNING \"TourId\";";
+        private const string SQL_UPDATE_TOUR = "UPDATE public.\"Tours\" SET \"TourName\"=@Name, \"TourDescription\"=@Description WHERE \"TourId\"= @Id;";
+        private const string SQL_DELETE = "DELETE FROM public.\"Tours\" WHERE \"TourId\"= @Id;";
 
         public TourItemPostgresDAO()
         {
@@ -68,11 +70,32 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
             {
                 while (reader.Read())
                 {
-                    tourItemList.Add(new TourItem((int)reader["TourId"], (string)reader["TourName"], (string)reader["TourDescription"],  (double)reader["TourDistance"], (string)reader["TourImgPath"]));
+                    tourItemList.Add(new TourItem((int)reader["TourId"], (string)reader["TourName"], (string)reader["TourDescription"], (double)reader["TourDistance"], (string)reader["TourStart"], (string)reader["TourDestination"],  (string)reader["TourImgPath"]));
                 }
             }
 
             return tourItemList;
+        }
+
+        public TourItem ModifyTourItem(string name, string description, int id)
+        {
+            DbCommand updateCommand = database.CreateCommand(SQL_UPDATE_TOUR);
+            
+            database.DefineParameter(updateCommand, "@Name", DbType.String, name);
+            database.DefineParameter(updateCommand, "@Description", DbType.String, description);            
+            database.DefineParameter(updateCommand, "@Id", DbType.Int32, id);
+
+
+            return FindById(database.ExecuteScalar(updateCommand));
+        }
+
+        public int DeleteTourItem(int tourId)
+        {
+
+            DbCommand deleteCommand = database.CreateCommand(SQL_DELETE);
+            database.DefineParameter(deleteCommand, "@Id", DbType.Int32, tourId);
+
+            return database.ExecuteNonQuery(deleteCommand);            
         }
     }
 }

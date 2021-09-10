@@ -16,6 +16,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
         private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Logs\" WHERE \"LogId\"= @Id;";
         private const string SQL_FIND_BY_TOUR_ID = "SELECT * FROM public.\"Logs\" WHERE \"TourId\"= @TourId;";
         private const string SQL_INSERT_NEW_LOG = "INSERT INTO public.\"Logs\"( \"TourId\", \"LogName\", \"LogDistance\", \"LogTime\", \"LogRating\", \"LogSpeed\", \"LogVerUp\", \"LogVerDown\", \"LogDiff\", \"LogDate\", \"LogReport\") VALUES( @TourId, @LogName, @LogDistance, @LogTime, @LogRating, @LogSpeed, @LogVerUp, @LogVerDown, @LogDiff, @LogDate, @LogReport);";
+        private const string SQL_DELETE_BY_TOUR_ID = "DELETE FROM public.\"Logs\" WHERE \"TourId\"= @TourId;";
 
         private IDatabase database;
         private ITourDAO tourDAO;
@@ -50,6 +51,11 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
 
             return FindById(database.ExecuteScalar(insertCommand));
+        }
+
+        public LogItem DeleteTourLogs(int tourId)
+        {
+            throw new NotImplementedException();
         }
 
         public LogItem FindById(int logId)
@@ -94,6 +100,17 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
                 }
             }
             return logItemList;
+        }
+
+        public int DeleteTourLogs(TourItem tour)
+        {
+
+            DbCommand deleteLogsCommand = database.CreateCommand(SQL_DELETE_BY_TOUR_ID);
+            database.DefineParameter(deleteLogsCommand, "@TourId", DbType.Int32, tour.Id);
+
+            return database.ExecuteNonQuery(deleteLogsCommand);
+            
+
         }
     }
 }

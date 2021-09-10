@@ -1,18 +1,19 @@
 ﻿using SWE_TourManager.BusinessLayer;
 using SWE_TourManager.DataAccessLayer;
 using SWE_TourManager.DataAccessLayer.Common;
+using SWE_TourManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using SWE_TourManager.ViewModels.Commands;
-using System.Windows;
 
 namespace SWE_TourManager.ViewModels
 {
-    public class CreateTourVM : ViewModelBase  
+    public class CopyTourVM : ViewModelBase
     {
         private string newTourName;
         private string newTourStart;
@@ -22,18 +23,21 @@ namespace SWE_TourManager.ViewModels
         public HTTPRequest httpRequest;
         public HTTPResponseHandler httpResponse;
         public TourImgHandler imageHandler;
-        private ITourManagerFactory tourManagerFactory;
+        private ITourManagerFactory tourManagerFactory;        
 
-        private ICommand createTourCommand;
-        public ICommand CreateTourCommand => createTourCommand ??= new RelayCommand(CreateTour);
-
-        public CreateTourVM()
+        public CopyTourVM(TourItem tour)
         {
             tourManagerFactory = TourManagerFactory.GetInstance();
             httpRequest = new HTTPRequest();
             httpResponse = new HTTPResponseHandler();
-            imageHandler = new TourImgHandler();
+            imageHandler = new TourImgHandler();           
+            newTourName = tour.Name;
+            newTourStart = tour.Start;
+            newTourDestination = tour.Destination;
+            newTourDescription = tour.Description;
+            newTourDistance = tour.Distance;
         }
+
 
         public string NewTourName
         {
@@ -114,7 +118,7 @@ namespace SWE_TourManager.ViewModels
             }
         }
 
-        private void CreateTour(object commandParameter)
+        private void CopyTour(object commandParameter)
         {
             if (NewTourStart == null || NewTourStart == "" || NewTourDestination == null || NewTourDestination == "" || NewTourDescription == null || NewTourDescription == "" || NewTourName == null || NewTourName == "")
             {
@@ -141,5 +145,9 @@ namespace SWE_TourManager.ViewModels
             NewTourStart = "";
             NewTourDestination = "";
         }
+
+        private ICommand createTourCommand;
+        public ICommand CreateTourCommand => createTourCommand ??= new RelayCommand(CopyTour);
+       
     }
 }
