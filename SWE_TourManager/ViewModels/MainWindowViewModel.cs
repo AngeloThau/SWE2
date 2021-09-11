@@ -211,5 +211,23 @@ namespace SWE_TourManager.ViewModels
             CopyTour window = new CopyTour(CurrentTour);
             window.Show();
         }
+
+        private ICommand exportTourCommand;
+        public ICommand ExportTourCommand => exportTourCommand ??= new RelayCommand(ExportTour);
+
+        private void ExportTour(object commandParameter)
+        {
+            tourManagerFactory.ExportTour(CurrentTour);
+            MessageBox.Show("Tour has been Exported");
+        }
+
+        private ICommand importTourCommand;
+        public ICommand ImportTourCommand => importTourCommand ??= new RelayCommand(ImportTour);
+
+        private void ImportTour(object commandParameter)
+        {
+            ImportTour window = new ImportTour();
+            window.Show();
+        }
     }
 }

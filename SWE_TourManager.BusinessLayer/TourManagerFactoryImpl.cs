@@ -74,5 +74,19 @@ namespace SWE_TourManager.BusinessLayer
             logDAO.DeleteTourLogs(tour);
             tourDAO.DeleteTourItem(tour.Id);
         }
+
+        public TourItem ImportTour(string tourName)
+        {
+            TourFileHandler tourFileHandler = new TourFileHandler();
+            string [] tourString = tourFileHandler.GetImportTourString(tourName);
+
+            return CreateTour(tourString[0], tourString[1], Convert.ToDouble(tourString[2]), tourString[3], tourString[4], tourString[5]);
+        }
+
+        public void ExportTour(TourItem tour)
+        {
+            TourFileHandler tourFileHandler = new TourFileHandler();
+            tourFileHandler.ExportTour(tour);
+        }
     }
 }

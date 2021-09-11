@@ -16,6 +16,8 @@ namespace SWE_TourManager.BusinessLayer
         public TourItem CreateTour(string name, string description, double distance, string start, string destination, string imgPath);
         public LogItem CreateLog(TourItem logTourItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport);
         public TourItem ModifyTour(string name, string description, int id);
+        public TourItem ImportTour(string tourName);
+        public void ExportTour(TourItem tour);
         public void DeleteTour(TourItem tour);
     }
 }
