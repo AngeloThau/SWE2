@@ -210,10 +210,43 @@ namespace SWE_TourManager.ViewModels
 
        
         private void CreateLog(object commandParameter)
-        {           
+        {
+
+            Validator validator = new Validator();
+
             if (NewLogName == null || NewLogReport == null || NewLogName == "" || NewLogReport == "")
             {
                 MessageBox.Show("Parameter Missing, Report and Name Cannot be empty");
+                return;
+            }
+            else if (!validator.IsAllowedInput(NewLogName))
+            {
+                MessageBox.Show("Input at Log Name not allowed");
+                return;
+            }
+            else if (!validator.IsNumber(NewLogTime.ToString()))
+            {
+                MessageBox.Show("Input at Time not allowed");
+                return;
+            }
+            else if (!validator.IsNumber(NewLogSpeed.ToString()))
+            {
+                MessageBox.Show("Input at Speed not allowed");
+                return;
+            }
+            else if (!validator.IsNumber(NewLogVerUp.ToString()))
+            {
+                MessageBox.Show("Input at Ver Up not allowed");
+                return;
+            }
+            else if (!validator.IsNumber(NewLogVerDown.ToString()))
+            {
+                MessageBox.Show("Input at Ver Down not allowed");
+                return;
+            }
+            else if (!validator.IsAllowedInput(NewLogReport))
+            {
+                MessageBox.Show("Input at Report not allowed");
                 return;
             }
             LogItem generatedLog = tourManagerFactory.CreateLog(CurrentTour, NewLogName, NewLogDistance, NewLogTime, NewLogRating, NewLogSpeed, NewLogVerUp, NewLogVerDown, NewLogDiff, NewLogDate, NewLogReport);

@@ -41,8 +41,15 @@ namespace SWE_TourManager.ViewModels
 
         private void ImportTour(object commandParameter)
         {
-            tourManagerFactory.ImportTour(importTourName);
+            Validator validator = new Validator();
+            if (!validator.TourNameDoesNotExist(importTourName))
+            {
+                MessageBox.Show("This Tour Name is already used");
+                return;
+            }
 
+            tourManagerFactory.ImportTour(importTourName);
+            
             MessageBox.Show("Tour has been sucessfully Imported!");
         }
     }

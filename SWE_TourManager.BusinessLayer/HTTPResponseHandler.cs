@@ -19,6 +19,7 @@ namespace SWE_TourManager.BusinessLayer
 
         public MapInfos GetImgData()
         {
+            
             MapInfos mapInfo = new MapInfos();
             mapInfo.sessionId = jsonData["route"]["sessionId"].ToString();
             mapInfo.boundingBox = new List<string>();

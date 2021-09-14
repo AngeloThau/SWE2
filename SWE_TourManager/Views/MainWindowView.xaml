@@ -34,7 +34,10 @@
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding ExportTourCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}">Export Tour</Button>
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding CreateLogCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}" >Create Log</Button>
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding PrintTourCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}">Print Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding UpdateLogCommand}" IsEnabled="{Binding ElementName=LogListBox, Path=SelectedItems.Count}">Modify Log</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding DeleteLogCommand}" IsEnabled="{Binding ElementName=LogListBox, Path=SelectedItems.Count}">Delete Log</Button>
             <Button Width="Auto" Margin="5,5,5,0" Command="{Binding DeleteTourCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}">Delete Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding SummarizeReport}" >Report</Button>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Column="1">

@@ -18,6 +18,7 @@ namespace SWE_TourManager.ViewModels
     {
 
         private ITourManagerFactory tourManagerFactory;
+        private Validator validator;
         private TourItem currentTour;
         private LogItem currentLog;
         private string searchTourName;
@@ -88,12 +89,19 @@ namespace SWE_TourManager.ViewModels
 
         private void SearchTour(object commandParameter)
         {
-            IEnumerable foundTourItems = this.tourManagerFactory.SearchTours(SearchTourName);
-            TourItems.Clear();
-            foreach(TourItem tourItem in foundTourItems)
+            if (validator.IsAllowedInput(SearchTourName))
             {
-                TourItems.Add(tourItem);
+                IEnumerable foundTourItems = this.tourManagerFactory.SearchTours(SearchTourName);
+                TourItems.Clear();
+                foreach (TourItem tourItem in foundTourItems)
+                {
+                    TourItems.Add(tourItem);
+                }
             }
+
+            MessageBox.Show("Please only Enter viable Searchterms");
+            return;
+
         }
 
       
@@ -165,12 +173,20 @@ namespace SWE_TourManager.ViewModels
         }
         private void SearchLog(object commandParameter)
         {
-            IEnumerable foundLogItems = this.tourManagerFactory.SearchLogs(CurrentTour, SearchLogName);
-            LogItems.Clear();
-            foreach (LogItem logItem in foundLogItems)
+
+            if (validator.IsAllowedInput(SearchTourName))
             {
-                LogItems.Add(logItem);
+                IEnumerable foundLogItems = this.tourManagerFactory.SearchLogs(CurrentTour, SearchLogName);
+                LogItems.Clear();
+                foreach (LogItem logItem in foundLogItems)
+                {
+                    LogItems.Add(logItem);
+                }
             }
+
+            MessageBox.Show("Please only Enter viable Searchterms");
+            return;
+            
         }
 
 
@@ -228,6 +244,43 @@ namespace SWE_TourManager.ViewModels
         {
             ImportTour window = new ImportTour();
             window.Show();
+        }
+
+        private ICommand updateLogCommand;
+        public ICommand UpdateLogCommand => updateLogCommand ??= new RelayCommand(UpdateLog);
+
+        private void UpdateLog(object commandParameter)
+        {
+            ModifyLog window = new ModifyLog(CurrentLog);
+            window.Show();
+        }
+
+        private ICommand deleteLogCommand;
+        public ICommand DeleteLogCommand => deleteLogCommand ??= new RelayCommand(DeleteLog);
+
+        private void DeleteLog(object commandParameter)
+        {
+            tourManagerFactory.DeleteLog(currentLog);
+            MessageBox.Show("Log has been Deleted");
+            LogItems.Clear();            
+            LogListFill();
+        }
+
+        private ICommand printTourCommand;
+        public ICommand PrintTourCommand => printTourCommand ??= new RelayCommand(PrintTour);
+
+        private void PrintTour(object commandParameter)
+        {
+            tourManagerFactory.PrintTour(CurrentTour);
+            MessageBox.Show("Tour has been printed, you can find it in the corresponding folder");
+        }
+
+        private ICommand summarizeReport;
+        public ICommand SummarizeReport => summarizeReport ??= new RelayCommand(PerformSummarizeReport);
+
+        private void PerformSummarizeReport(object commandParameter)
+        {
+            MessageBox.Show(tourManagerFactory.summarizeReport());            
         }
     }
 }

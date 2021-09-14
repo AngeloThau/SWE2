@@ -17,6 +17,8 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
         private const string SQL_FIND_BY_TOUR_ID = "SELECT * FROM public.\"Logs\" WHERE \"TourId\"= @TourId;";
         private const string SQL_INSERT_NEW_LOG = "INSERT INTO public.\"Logs\"( \"TourId\", \"LogName\", \"LogDistance\", \"LogTime\", \"LogRating\", \"LogSpeed\", \"LogVerUp\", \"LogVerDown\", \"LogDiff\", \"LogDate\", \"LogReport\") VALUES( @TourId, @LogName, @LogDistance, @LogTime, @LogRating, @LogSpeed, @LogVerUp, @LogVerDown, @LogDiff, @LogDate, @LogReport);";
         private const string SQL_DELETE_BY_TOUR_ID = "DELETE FROM public.\"Logs\" WHERE \"TourId\"= @TourId;";
+        private const string SQL_DELETE_BY_LOG_ID = "DELETE FROM public.\"Logs\" WHERE \"LogId\"= @LogId;";
+        private const string SQL_UPDATE_LOG = "UPDATE public.\"Logs\" SET \"LogName\"= @LogName, \"LogDistance\"= @LogDistance, \"LogTime\"= @LogTime, \"LogSpeed\"= @LogSpeed , \"LogVerUp\"= @LogVerUp , \"LogVerDown\"= @LogVerDown , \"LogDiff\"= @LogDiff , \"LogDate\"= @LogDate , \"LogReport\"= @LogReport , \"LogRating\"= @LogRating WHERE \"LogId\"= @Id;";
 
         private IDatabase database;
         private ITourDAO tourDAO;
@@ -111,6 +113,35 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
             return database.ExecuteNonQuery(deleteLogsCommand);
             
 
+        }
+
+        public int DeleteLogItem(int logId)
+        {
+            DbCommand deleteLogsCommand = database.CreateCommand(SQL_DELETE_BY_LOG_ID);
+            database.DefineParameter(deleteLogsCommand, "@LogId", DbType.Int32, logId);
+
+            return database.ExecuteNonQuery(deleteLogsCommand);
+        }
+
+        public LogItem UpdateLogItem(int logId, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport)
+        {
+            DbCommand updateCommand = database.CreateCommand(SQL_UPDATE_LOG);
+
+            database.DefineParameter(updateCommand, "@LogName", DbType.String, logName);
+            database.DefineParameter(updateCommand, "@LogDistance", DbType.Double, logDistance);
+            database.DefineParameter(updateCommand, "@LogTime", DbType.Int32, logTime);
+            database.DefineParameter(updateCommand, "@LogRating", DbType.Int32, logRating);
+            database.DefineParameter(updateCommand, "@LogSpeed", DbType.Int32, logSpeed);
+            database.DefineParameter(updateCommand, "@LogVerUp", DbType.Int32, logVerUp);
+            database.DefineParameter(updateCommand, "@LogVerDown", DbType.Int32, logVerDown);
+            database.DefineParameter(updateCommand, "@LogDiff", DbType.Int32, logDiff);
+            database.DefineParameter(updateCommand, "@LogDate", DbType.DateTime, logDate);
+            database.DefineParameter(updateCommand, "@LogReport", DbType.String, logReport);
+            database.DefineParameter(updateCommand, "@Id", DbType.Int32, logId);
+
+
+
+            return FindById(database.ExecuteScalar(updateCommand));
         }
     }
 }

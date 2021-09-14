@@ -116,9 +116,30 @@ namespace SWE_TourManager.ViewModels
 
         private void CreateTour(object commandParameter)
         {
+            Validator validator = new Validator();
             if (NewTourStart == null || NewTourStart == "" || NewTourDestination == null || NewTourDestination == "" || NewTourDescription == null || NewTourDescription == "" || NewTourName == null || NewTourName == "")
             {
                 MessageBox.Show("Missing Parameters - please Fill out everything");
+                return;
+            }
+            else if (!validator.IsAllowedInput(NewTourName) || !validator.TourNameDoesNotExist(NewTourName))
+            {
+                MessageBox.Show("Please Use a different Tour Name");
+                return;
+            }
+            else if (!validator.IsAlphabetOrNumber(NewTourStart))
+            {
+                MessageBox.Show("Input at Start not allowed");
+                return;
+            }
+            else if (!validator.IsAlphabetOrNumber(NewTourDestination))
+            {
+                MessageBox.Show("Input at Destination not allowed");
+                return;
+            }
+            else if (!validator.IsAllowedInput(NewTourDescription))
+            {
+                MessageBox.Show("Input at Description not allowed");
                 return;
             }
 

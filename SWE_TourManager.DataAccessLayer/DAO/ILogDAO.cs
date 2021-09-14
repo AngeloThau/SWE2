@@ -12,6 +12,8 @@ namespace SWE_TourManager.DataAccessLayer.DAO
         LogItem FindById(int logId);
         LogItem AddNewLogItem(TourItem logTourItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport);
         int DeleteTourLogs(TourItem tour);
+        int DeleteLogItem(int logId);
+        LogItem UpdateLogItem(int logId, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport);
         IEnumerable<LogItem> GetLogForTourItem(TourItem tour);
     }
 }

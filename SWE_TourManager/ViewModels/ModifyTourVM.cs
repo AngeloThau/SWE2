@@ -80,6 +80,19 @@ namespace SWE_TourManager.ViewModels
 
         private void ModifyTour(object commandParameter)
         {
+            Validator validator = new Validator();
+
+            if (!validator.IsAllowedInput(ModifyTourName) || !validator.TourNameDoesNotExist(ModifyTourName))
+            {
+                MessageBox.Show("Input at Tour Name not allowed (maybe Name is already used)");
+                return;
+            }
+            else if (!validator.IsNumber(ModifyTourDescription))
+            {
+                MessageBox.Show("Input at Description not allowed");
+                return;
+            }
+            
             tourManagerFactory.ModifyTour(ModifyTourName, ModifyTourDescription, currentTour.Id);
             MessageBox.Show("Tour has been Modified");
         }
