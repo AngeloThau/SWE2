@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE_TourManager.DataAccessL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE_TourManager.DataAccessLayer.PostgresSqlServer", "..\SWE_TourManager.DataAccessLayer.PostgresSqlServer\SWE_TourManager.DataAccessLayer.PostgresSqlServer.csproj", "{45DFA49D-2935-4ADE-9579-97E4CAF72E63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWE_TourManager.NUnitTests", "..\SWE_TourManager.NUnitTests\SWE_TourManager.NUnitTests.csproj", "{919D9871-5B90-4B11-A6AA-1B5F77975075}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWE_TourManager.Tests", "..\SWE_TourManager.Tests\SWE_TourManager.Tests.csproj", "{39D30178-95C5-4A55-B17C-17144E54AA7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{45DFA49D-2935-4ADE-9579-97E4CAF72E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45DFA49D-2935-4ADE-9579-97E4CAF72E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45DFA49D-2935-4ADE-9579-97E4CAF72E63}.Release|Any CPU.Build.0 = Release|Any CPU
-		{919D9871-5B90-4B11-A6AA-1B5F77975075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{919D9871-5B90-4B11-A6AA-1B5F77975075}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{919D9871-5B90-4B11-A6AA-1B5F77975075}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{919D9871-5B90-4B11-A6AA-1B5F77975075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39D30178-95C5-4A55-B17C-17144E54AA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39D30178-95C5-4A55-B17C-17144E54AA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39D30178-95C5-4A55-B17C-17144E54AA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39D30178-95C5-4A55-B17C-17144E54AA7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

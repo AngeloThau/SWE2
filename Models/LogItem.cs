@@ -21,6 +21,10 @@ namespace SWE_TourManager.Models
         public DateTime LogDateTime { get; set; }
         public string LogReport { get; set; }
 
+        public LogItem()
+        {
+
+        }
         public LogItem(TourItem logTourItem, int id, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport)
         {
             this.LogTourItem = logTourItem;

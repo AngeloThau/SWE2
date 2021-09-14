@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace SWE_TourManager.NUnitTests
+namespace SWE_TourManager.Test
 {
     public class Tests
     {

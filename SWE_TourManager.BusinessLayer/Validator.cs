@@ -37,7 +37,7 @@ namespace SWE_TourManager.BusinessLayer
         }
         public bool IsAlphabetOrNumber(string input)
         {
-            Regex r = new Regex("^[a-zA-Z0-9 ]+$");
+            Regex r = new Regex("^[a-zA-Z0-9äöüÄÖÜ ]+$");
             if (r.IsMatch(input))
             {
                 return true;
