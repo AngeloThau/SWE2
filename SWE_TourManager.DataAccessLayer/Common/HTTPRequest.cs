@@ -12,12 +12,12 @@ namespace SWE_TourManager.DataAccessLayer.Common
     public class HTTPRequest : IHTTPRequest
     {
 
-        private string url;
+        private string url;        
         private string response;
 
         public HTTPRequest()
         {
-            url = ConfigurationManager.AppSettings["DataUrl"].ToString(); 
+            url = ConfigurationManager.AppSettings["DataUrl"].ToString();             
         }
         public string GetJsonResponse(string Start, string Destination)
         {
@@ -45,5 +45,6 @@ namespace SWE_TourManager.DataAccessLayer.Common
             response.Close();
 
         }
+       
     }
 }

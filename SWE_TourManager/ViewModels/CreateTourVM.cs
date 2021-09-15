@@ -23,6 +23,7 @@ namespace SWE_TourManager.ViewModels
         public HTTPResponseHandler httpResponse;
         public TourImgHandler imageHandler;
         private ITourManagerFactory tourManagerFactory;
+        RandomTourBuilder randi;
 
         private ICommand createTourCommand;
         public ICommand CreateTourCommand => createTourCommand ??= new RelayCommand(CreateTour);
@@ -33,6 +34,7 @@ namespace SWE_TourManager.ViewModels
             httpRequest = new HTTPRequest();
             httpResponse = new HTTPResponseHandler();
             imageHandler = new TourImgHandler();
+            randi = new RandomTourBuilder();
         }
 
         public string NewTourName
@@ -122,17 +124,17 @@ namespace SWE_TourManager.ViewModels
                 MessageBox.Show("Missing Parameters - please Fill out everything");
                 return;
             }
-            else if (!validator.IsAllowedInput(NewTourName) || !validator.TourNameDoesNotExist(NewTourName))
+            else if (!validator.IsAlphabetOrNumber(NewTourName) || !validator.TourNameDoesNotExist(NewTourName))
             {
                 MessageBox.Show("Please Use a different Tour Name");
                 return;
             }
-            else if (!validator.IsAlphabetOrNumber(NewTourStart))
+            else if (!validator.IsAllowedInput(NewTourStart))
             {
                 MessageBox.Show("Input at Start not allowed");
                 return;
             }
-            else if (!validator.IsAlphabetOrNumber(NewTourDestination))
+            else if (!validator.IsAllowedInput(NewTourDestination))
             {
                 MessageBox.Show("Input at Destination not allowed");
                 return;
@@ -153,6 +155,7 @@ namespace SWE_TourManager.ViewModels
             ClearAll();
 
         }
+       
 
         public void ClearAll()
         {
@@ -161,6 +164,17 @@ namespace SWE_TourManager.ViewModels
             NewTourDistance = 0;
             NewTourStart = "";
             NewTourDestination = "";
+        }
+
+        private ICommand random;
+        public ICommand Random => random ??= new RelayCommand(PerformRandom);
+
+        private void PerformRandom(object commandParameter)
+        {           
+            NewTourName = randi.GenerateName(7);
+            NewTourDescription = randi.GenerateName(35);
+            NewTourStart = randi.GetRandomLatLong();
+            NewTourDestination = randi.GetRandomLatLong();
         }
     }
 }

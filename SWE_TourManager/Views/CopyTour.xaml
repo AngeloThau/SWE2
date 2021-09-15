@@ -6,7 +6,7 @@
         xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels" d:DataContext="{d:DesignInstance Type=ViewModels:CopyTourVM}"
         xmlns:local="clr-namespace:SWE_TourManager.Views"
         mc:Ignorable="d"
-        Title="CopyTour" Height="450" Width="800">
+        Title="CopyTour" Height="150" Width="500">
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -32,6 +32,7 @@
         </Grid>
 
         <Button Command="{Binding CreateTourCommand}">Create</Button>
+        
 
     </StackPanel>
 </Window>

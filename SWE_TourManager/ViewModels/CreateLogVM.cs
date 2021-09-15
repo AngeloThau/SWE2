@@ -25,6 +25,7 @@ namespace SWE_TourManager.ViewModels
         private int newLogDiff;
         private DateTime newLogDate = DateTime.Now;
         private string newLogReport;
+        private RandomTourBuilder randi;
       
         private ICommand createLogCommand;
         public ICommand CreateLogCommand => createLogCommand ??= new RelayCommand(CreateLog);
@@ -33,6 +34,7 @@ namespace SWE_TourManager.ViewModels
         {
             this.currentTour = tour;
             this.tourManagerFactory = TourManagerFactory.GetInstance();
+            randi = new RandomTourBuilder();
     }
 
         public TourItem CurrentTour
@@ -266,6 +268,23 @@ namespace SWE_TourManager.ViewModels
             NewLogSpeed = 0;
             NewLogVerDown = 0;
             NewLogVerUp = 0;           
+        }
+
+        private ICommand random;
+        public ICommand Random => random ??= new RelayCommand(PerformRandom);
+
+        private void PerformRandom(object commandParameter)
+        {
+            NewLogDistance = randi.GenerateInt(Convert.ToInt32(currentTour.Distance));
+            NewLogTime = randi.GenerateInt(1000);
+            NewLogName = randi.GenerateName(10);
+            NewLogReport = randi.GenerateName(40);
+            NewLogRating = randi.GenerateInt(10);
+            NewLogDate = DateTime.Now;
+            NewLogDiff = randi.GenerateInt(10);
+            NewLogSpeed = randi.GenerateInt(20);
+            NewLogVerDown = randi.GenerateInt(100);
+            NewLogVerUp = randi.GenerateInt(100);
         }
     }
 }

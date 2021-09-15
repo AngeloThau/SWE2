@@ -72,5 +72,6 @@
     </Grid>
 
         <Button Command="{Binding CreateLogCommand}">Create</Button>
+        <Button Command="{Binding Random}" Margin="5, 5, 5, 5" HorizontalAlignment="Left">Fill with Random</Button>
     </StackPanel>
 </Window>

@@ -18,7 +18,7 @@ namespace SWE_TourManager.ViewModels
     {
 
         private ITourManagerFactory tourManagerFactory;
-        private Validator validator;
+        private Validator validator = new Validator();
         private TourItem currentTour;
         private LogItem currentLog;
         private string searchTourName;
