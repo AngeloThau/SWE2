@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWE_TourManager", "SWE_TourManager.csproj", "{DF604E9D-4891-4684-931E-CAAA40972F15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE_TourManager", "SWE_TourManager.csproj", "{DF604E9D-4891-4684-931E-CAAA40972F15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE_TourManager.Models", "..\Models\SWE_TourManager.Models.csproj", "{AF18A229-F805-45CA-8A4E-0B5B61160ABC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE_TourManager.BusinessLayer", "..\SWE_TourManager.BusinessLayer\SWE_TourManager.BusinessLayer.csproj", "{194D59EC-2998-4864-BD0F-C806660602FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE_TourManager.DataAccessLayer", "..\SWE_TourManager.DataAccessLayer\SWE_TourManager.DataAccessLayer.csproj", "{0246E600-D946-4D34-9535-2363711AC904}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWE_TourManager.DataAccessLayer.PostgresSqlServer", "..\SWE_TourManager.DataAccessLayer.PostgresSqlServer\SWE_TourManager.DataAccessLayer.PostgresSqlServer.csproj", "{45DFA49D-2935-4ADE-9579-97E4CAF72E63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWE_TourManager.Tests", "..\SWE_TourManager.Tests\SWE_TourManager.Tests.csproj", "{39D30178-95C5-4A55-B17C-17144E54AA7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{DF604E9D-4891-4684-931E-CAAA40972F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF604E9D-4891-4684-931E-CAAA40972F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF604E9D-4891-4684-931E-CAAA40972F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF18A229-F805-45CA-8A4E-0B5B61160ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF18A229-F805-45CA-8A4E-0B5B61160ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF18A229-F805-45CA-8A4E-0B5B61160ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF18A229-F805-45CA-8A4E-0B5B61160ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194D59EC-2998-4864-BD0F-C806660602FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194D59EC-2998-4864-BD0F-C806660602FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194D59EC-2998-4864-BD0F-C806660602FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194D59EC-2998-4864-BD0F-C806660602FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0246E600-D946-4D34-9535-2363711AC904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0246E600-D946-4D34-9535-2363711AC904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0246E600-D946-4D34-9535-2363711AC904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0246E600-D946-4D34-9535-2363711AC904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45DFA49D-2935-4ADE-9579-97E4CAF72E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45DFA49D-2935-4ADE-9579-97E4CAF72E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45DFA49D-2935-4ADE-9579-97E4CAF72E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45DFA49D-2935-4ADE-9579-97E4CAF72E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39D30178-95C5-4A55-B17C-17144E54AA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39D30178-95C5-4A55-B17C-17144E54AA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39D30178-95C5-4A55-B17C-17144E54AA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39D30178-95C5-4A55-B17C-17144E54AA7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

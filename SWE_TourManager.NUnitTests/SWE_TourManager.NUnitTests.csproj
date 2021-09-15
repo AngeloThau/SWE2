@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Models\SWE_TourManager.Models.csproj" />
+    <ProjectReference Include="..\SWE_TourManager.BusinessLayer\SWE_TourManager.BusinessLayer.csproj" />
+    <ProjectReference Include="..\SWE_TourManager.DataAccessLayer.PostgresSqlServer\SWE_TourManager.DataAccessLayer.PostgresSqlServer.csproj" />
+    <ProjectReference Include="..\SWE_TourManager.DataAccessLayer\SWE_TourManager.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\SWE_TourManager\SWE_TourManager.csproj" />
+  </ItemGroup>
+
+</Project>

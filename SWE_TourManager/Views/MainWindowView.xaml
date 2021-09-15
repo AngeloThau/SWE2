@@ -1,0 +1,164 @@
+﻿<Window x:Class="SWE_TourManager.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels" d:DataContext="{d:DesignInstance Type=ViewModels:MainWindowViewModel}"
+        xmlns:local="clr-namespace:SWE_TourManager"
+        mc:Ignorable="d"
+        Title="Tour Manager" Height="450" Width="800">
+
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="0.25*" />
+            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="0.75*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.RowSpan="2">
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding NewTourCommand}">New Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding ModifyTourCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}">Modify Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding CopyTourCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}">Copy Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding ImportTourCommand}">Import Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding ExportTourCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}">Export Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding CreateLogCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}" >Create Log</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding PrintTourCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}">Print Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding UpdateLogCommand}" IsEnabled="{Binding ElementName=LogListBox, Path=SelectedItems.Count}">Modify Log</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding DeleteLogCommand}" IsEnabled="{Binding ElementName=LogListBox, Path=SelectedItems.Count}">Delete Log</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding DeleteTourCommand}" IsEnabled="{Binding ElementName=TourListBox, Path=SelectedItems.Count}">Delete Tour</Button>
+            <Button Width="Auto" Margin="5,5,5,0" Command="{Binding SummarizeReport}" >Report</Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1">
+            <TextBlock Text="Tours:" Margin="5"></TextBlock>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0" Name="txtTourSearchName" VerticalAlignment="Center" Text="{Binding SearchTourName, Mode=TwoWay}"></TextBox>
+                <Button Grid.Column="1" Width="50" Margin="5,0,0,0" Command="{Binding SearchTourCommand}">Search</Button>
+                <Button Grid.Column="2" Width="50" Margin="5,0,5,0" Command="{Binding ClearTourCommand}">Clear</Button>
+            </Grid>
+            <ListBox x:Name="TourListBox" ItemsSource="{Binding TourItems}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" Margin="0,5,0,0">
+                
+                
+            </ListBox>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="Logs:" Margin="5"></TextBlock>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0" Name="txtLogSearchName" VerticalAlignment="Center" Text="{Binding SearchLogName, Mode=TwoWay}"></TextBox>
+                <Button Grid.Column="1" Width="50" Margin="5,0,0,0" Command="{Binding SearchLogCommand}">Search</Button>
+                <Button Grid.Column="2" Width="50" Margin="5,0,5,0" Command="{Binding ClearLogCommand}">Clear</Button>
+            </Grid>
+            <ListBox x:Name="LogListBox" ItemsSource="{Binding LogItems}" SelectedItem="{Binding CurrentLog}" DisplayMemberPath="LogName" Margin="0,5,0,0">
+
+
+            </ListBox>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+            <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center">Route Info:</TextBlock>
+            <Image Source="{Binding CurrentTour.ImgPath}" Height="150"></Image>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="3">
+            <TextBlock HorizontalAlignment="Center">Tour Data</TextBlock>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="TourName"  VerticalAlignment="Center" Text="{Binding CurrentTour.Name, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Description:</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TourDescription"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentTour.Description, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="TourInfo"  VerticalAlignment="Center" Text="{Binding CurrentTour.Distance, Mode=TwoWay}"></TextBlock>
+
+            </Grid>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+            <TextBlock HorizontalAlignment="Center">Tour Log</TextBlock>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="LogName"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogName, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="LogDistance"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDistance, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Total Time:</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="LogTime"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogTime, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="3" Margin="5,0,5,0" VerticalAlignment="Center">Rating:</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" Name="LogRating"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogRating, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="4" Margin="5,0,5,0" VerticalAlignment="Center">Avg. Speed:</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="1" Name="LogSpeed"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogSpeed, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="5" Margin="5,0,5,0" VerticalAlignment="Center">Vertical Meters (up):</TextBlock>
+                <TextBlock Grid.Row="5" Grid.Column="1" Name="LogVerUp"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogVerUp, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="6" Margin="5,0,5,0" VerticalAlignment="Center">Vertical Meters (down):</TextBlock>
+                <TextBlock Grid.Row="6" Grid.Column="1" Name="LogVerDown"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogVerDown, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="7" Margin="5,0,5,0" VerticalAlignment="Center">Difficulty:</TextBlock>
+                <TextBlock Grid.Row="7" Grid.Column="1" Name="LogDiff"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDiff, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="8" Margin="5,0,5,0" VerticalAlignment="Center">Date:</TextBlock>
+                <TextBlock Grid.Row="8" Grid.Column="1" Name="LogDate"  VerticalAlignment="Center" Text="{Binding CurrentLog.LogDateTime, Mode=TwoWay}"></TextBlock>
+                <TextBlock Grid.Row="9" Margin="5,0,5,0" VerticalAlignment="Center">Report:</TextBlock>
+                <TextBlock Grid.Row="9" Grid.Column="1" Name="LogReport"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentLog.LogReport, Mode=TwoWay}"></TextBlock>
+
+            </Grid>
+
+
+        </StackPanel>
+
+    </Grid>
+</Window>

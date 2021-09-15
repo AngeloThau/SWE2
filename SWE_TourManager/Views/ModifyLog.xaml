@@ -1,0 +1,76 @@
+﻿<Window x:Class="SWE_TourManager.Views.ModifyLog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels" d:DataContext="{d:DesignInstance Type=ViewModels:ModifyLogVM}"
+        xmlns:local="clr-namespace:SWE_TourManager.Views"
+        mc:Ignorable="d"
+        Title="ModifyLog" Height="450" Width="800">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="LogName"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogName}"></TextBox>
+            <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Distance (Meters):</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="LogDistance"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogDistance}"></TextBox>
+            <TextBlock Grid.Row="2" Margin="5,0,5,0" VerticalAlignment="Center">Total Time (Minutes):</TextBlock>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="LogTime"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogTime}"></TextBox>
+            <TextBlock Grid.Row="3" Margin="5,0,5,0" VerticalAlignment="Center">Rating (10 is Best):</TextBlock>
+            <ComboBox Grid.Row="3" Grid.Column="1" Name="LogRating"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogRating}" >
+                <ComboBoxItem IsSelected="True">1</ComboBoxItem>
+                <ComboBoxItem >2</ComboBoxItem>
+                <ComboBoxItem >3</ComboBoxItem>
+                <ComboBoxItem >4</ComboBoxItem>
+                <ComboBoxItem >5</ComboBoxItem>
+                <ComboBoxItem >6</ComboBoxItem>
+                <ComboBoxItem >7</ComboBoxItem>
+                <ComboBoxItem >8</ComboBoxItem>
+                <ComboBoxItem >9</ComboBoxItem>
+                <ComboBoxItem >10</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Grid.Row="4" Margin="5,0,5,0" VerticalAlignment="Center">Avg. Speed:</TextBlock>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="LogSpeed"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogSpeed}"></TextBox>
+            <TextBlock Grid.Row="5" Margin="5,0,5,0" VerticalAlignment="Center">Vertical Meters (up):</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="1" Name="LogVerUp"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogVerUp}"></TextBox>
+            <TextBlock Grid.Row="6" Margin="5,0,5,0" VerticalAlignment="Center">Vertical Meters (down):</TextBlock>
+            <TextBox Grid.Row="6" Grid.Column="1" Name="LogVerDown"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogVerDown}"></TextBox>
+            <TextBlock Grid.Row="7" Margin="5,0,5,0" VerticalAlignment="Center">Difficulty (10 is Hardest):</TextBlock>
+            <ComboBox Grid.Row="7" Grid.Column="1" Name="LogDiff"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogDiff}" >
+                <ComboBoxItem IsSelected="True">1</ComboBoxItem>
+                <ComboBoxItem >2</ComboBoxItem>
+                <ComboBoxItem >3</ComboBoxItem>
+                <ComboBoxItem >4</ComboBoxItem>
+                <ComboBoxItem >5</ComboBoxItem>
+                <ComboBoxItem >6</ComboBoxItem>
+                <ComboBoxItem >7</ComboBoxItem>
+                <ComboBoxItem >8</ComboBoxItem>
+                <ComboBoxItem >9</ComboBoxItem>
+                <ComboBoxItem >10</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Grid.Row="8" Margin="5,0,5,0" VerticalAlignment="Center">Date:</TextBlock>
+            <TextBlock Grid.Row="8" Grid.Column="1" Name="LogDate"  VerticalAlignment="Center" Text="{Binding Path=ModifyLogDate}"></TextBlock>
+            <TextBlock Grid.Row="9" Margin="5,0,5,0" VerticalAlignment="Center">Report:</TextBlock>
+            <TextBox Grid.Row="9" Grid.Column="1" Name="LogReport"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=ModifyLogReport}"></TextBox>
+
+        </Grid>
+
+        <Button Command="{Binding ModifyLogCommand}">Modify</Button>
+    </StackPanel>
+</Window>

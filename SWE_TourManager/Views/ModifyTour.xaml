@@ -1,0 +1,31 @@
+﻿<Window x:Class="SWE_TourManager.Views.ModifyTour"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels" d:DataContext="{d:DesignInstance Type=ViewModels:ModifyTourVM}"
+        xmlns:local="clr-namespace:SWE_TourManager.Views" 
+        mc:Ignorable="d"
+        Title="ModifyTour" Height="450" Width="800">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Margin="5,0,5,0" VerticalAlignment="Center">Name:</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="TourName"  VerticalAlignment="Center" Text="{Binding ModifyTourName, Mode=TwoWay}"></TextBox>
+            <TextBlock Grid.Row="1" Margin="5,0,5,0" VerticalAlignment="Center">Description:</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="TourDescription"  VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ModifyTourDescription, Mode=TwoWay}"></TextBox>
+
+        </Grid>
+
+        <Button Command="{Binding ModifyTourCommand}">Modify</Button>
+
+    </StackPanel>
+</Window>
