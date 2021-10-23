@@ -16,7 +16,7 @@ namespace SWE_TourManager.ViewModels
 {
     public class MainWindowViewModel :ViewModelBase
     {
-
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private ITourManagerFactory tourManagerFactory;
         private Validator validator = new Validator();
         private TourItem currentTour;
@@ -81,8 +81,10 @@ namespace SWE_TourManager.ViewModels
 
         private void TourListFill()
         {
+            logger.Info("Filling Tour List");
             foreach (TourItem tour in this.tourManagerFactory.GetTourItems())
             {
+                
                 TourItems.Add(tour);
             }
         }
@@ -118,6 +120,7 @@ namespace SWE_TourManager.ViewModels
 
         private void NewTour(object commandParameter)
         {
+            logger.Info("New Tour Window open");
             CreateTour window = new CreateTour();
             window.Show();            
         }
@@ -154,6 +157,7 @@ namespace SWE_TourManager.ViewModels
 
         private void LogListFill()
         {
+            logger.Info("Filling Log List");
             foreach (LogItem log in this.tourManagerFactory.GetLogForTourItem(CurrentTour))
             {
                 LogItems.Add(log);
@@ -203,6 +207,7 @@ namespace SWE_TourManager.ViewModels
 
         private void DeleteTour(object commandParameter)
         {
+            logger.Info("Deleting Tour");
             tourManagerFactory.DeleteTour(currentTour);
             MessageBox.Show("Tour has been Deleted");
             LogItems.Clear();
@@ -215,6 +220,7 @@ namespace SWE_TourManager.ViewModels
 
         private void ModifyTour(object commandParameter)
         {
+            logger.Info("Modify Tour Window open");
             ModifyTour window = new ModifyTour(CurrentTour);
             window.Show();
         }
@@ -224,6 +230,7 @@ namespace SWE_TourManager.ViewModels
 
         private void CopyTour(object commandParameter)
         {
+            logger.Info("Copy Tour Window open");
             CopyTour window = new CopyTour(CurrentTour);
             window.Show();
         }
@@ -233,6 +240,7 @@ namespace SWE_TourManager.ViewModels
 
         private void ExportTour(object commandParameter)
         {
+            logger.Info("Exporting Tour");
             tourManagerFactory.ExportTour(CurrentTour);
             MessageBox.Show("Tour has been Exported");
         }
@@ -242,6 +250,7 @@ namespace SWE_TourManager.ViewModels
 
         private void ImportTour(object commandParameter)
         {
+            logger.Info("Importing Tour");
             ImportTour window = new ImportTour();
             window.Show();
         }
@@ -251,6 +260,7 @@ namespace SWE_TourManager.ViewModels
 
         private void UpdateLog(object commandParameter)
         {
+            logger.Info("Modify Log Window open");
             ModifyLog window = new ModifyLog(CurrentLog);
             window.Show();
         }
@@ -260,6 +270,7 @@ namespace SWE_TourManager.ViewModels
 
         private void DeleteLog(object commandParameter)
         {
+            logger.Info("Delete Log");
             tourManagerFactory.DeleteLog(currentLog);
             MessageBox.Show("Log has been Deleted");
             LogItems.Clear();            
@@ -271,6 +282,7 @@ namespace SWE_TourManager.ViewModels
 
         private void PrintTour(object commandParameter)
         {
+            logger.Info("Printing Tour");
             tourManagerFactory.PrintTour(CurrentTour);
             MessageBox.Show("Tour has been printed, you can find it in the corresponding folder");
         }
@@ -280,6 +292,7 @@ namespace SWE_TourManager.ViewModels
 
         private void PerformSummarizeReport(object commandParameter)
         {
+            logger.Info("Summarizing Report");
             MessageBox.Show(tourManagerFactory.summarizeReport());            
         }
     }

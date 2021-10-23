@@ -15,6 +15,7 @@ namespace SWE_TourManager.ViewModels
 {
     public class CopyTourVM : ViewModelBase
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private Validator validator = new Validator();
         private string newTourName;
         private string newTourStart;
@@ -28,6 +29,7 @@ namespace SWE_TourManager.ViewModels
 
         public CopyTourVM(TourItem tour)
         {
+
             tourManagerFactory = TourManagerFactory.GetInstance();
             httpRequest = new HTTPRequest();
             httpResponse = new HTTPResponseHandler();
@@ -121,6 +123,7 @@ namespace SWE_TourManager.ViewModels
 
         private void CopyTour(object commandParameter)
         {
+            logger.Info("Validating Parameters");
             if (NewTourStart == null || NewTourStart == "" || NewTourDestination == null || NewTourDestination == "" || NewTourDescription == null || NewTourDescription == "" || NewTourName == null || NewTourName == "")
             {
                 MessageBox.Show("Missing Parameters - please Fill out everything");

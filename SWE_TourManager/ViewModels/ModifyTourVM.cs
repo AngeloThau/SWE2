@@ -87,7 +87,7 @@ namespace SWE_TourManager.ViewModels
                 MessageBox.Show("Input at Tour Name not allowed (maybe Name is already used)");
                 return;
             }
-            else if (!validator.IsNumber(ModifyTourDescription))
+            else if (!validator.IsAllowedInput(ModifyTourDescription))
             {
                 MessageBox.Show("Input at Description not allowed");
                 return;

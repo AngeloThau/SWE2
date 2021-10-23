@@ -13,6 +13,8 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 {
     public class LogItemPostgresDAO : ILogDAO
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Logs\" WHERE \"LogId\"= @Id;";
         private const string SQL_FIND_BY_TOUR_ID = "SELECT * FROM public.\"Logs\" WHERE \"TourId\"= @TourId;";
         private const string SQL_INSERT_NEW_LOG = "INSERT INTO public.\"Logs\"( \"TourId\", \"LogName\", \"LogDistance\", \"LogTime\", \"LogRating\", \"LogSpeed\", \"LogVerUp\", \"LogVerDown\", \"LogDiff\", \"LogDate\", \"LogReport\") VALUES( @TourId, @LogName, @LogDistance, @LogTime, @LogRating, @LogSpeed, @LogVerUp, @LogVerDown, @LogDiff, @LogDate, @LogReport);";
@@ -38,6 +40,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public LogItem AddNewLogItem(TourItem logTourItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport)
         {
+            logger.Info("DAL: Adding Log to Database");
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT_NEW_LOG);
             database.DefineParameter(insertCommand, "@TourId", DbType.Int32, logTourItem.Id);
             database.DefineParameter(insertCommand, "@LogName", DbType.String, logName);
@@ -55,13 +58,12 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
             return FindById(database.ExecuteScalar(insertCommand));
         }
 
-        public LogItem DeleteTourLogs(int tourId)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public LogItem FindById(int logId)
         {
+            logger.Info("DAL: Finding log with ID: " + logId);
+
             DbCommand findCommand = database.CreateCommand(SQL_FIND_BY_ID);
             database.DefineParameter(findCommand, "@Id", DbType.Int32, logId);
 
@@ -71,7 +73,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public IEnumerable<LogItem> GetLogForTourItem(TourItem tour)
         {
-         
+            logger.Info("DAL: Finding logs with from Tour with ID: " + tour.Id);
             DbCommand getLogsCommand = database.CreateCommand(SQL_FIND_BY_TOUR_ID);
             database.DefineParameter(getLogsCommand, "@TourId", DbType.Int32, tour.Id);
             return QueryLogsFromDB(getLogsCommand);
@@ -79,6 +81,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         private IEnumerable<LogItem> QueryLogsFromDB(DbCommand command)
         {
+            logger.Info("DAL: getting all Logs ");
             List<LogItem> logItemList = new List<LogItem>();
 
             using (IDataReader reader = database.ExecuteReader(command))
@@ -106,7 +109,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public int DeleteTourLogs(TourItem tour)
         {
-
+            logger.Info("DAL: Deleting logs from Tour with ID: " + tour.Id);
             DbCommand deleteLogsCommand = database.CreateCommand(SQL_DELETE_BY_TOUR_ID);
             database.DefineParameter(deleteLogsCommand, "@TourId", DbType.Int32, tour.Id);
 
@@ -117,6 +120,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public int DeleteLogItem(int logId)
         {
+            logger.Info("DAL: Deleting log with ID: " + logId);
             DbCommand deleteLogsCommand = database.CreateCommand(SQL_DELETE_BY_LOG_ID);
             database.DefineParameter(deleteLogsCommand, "@LogId", DbType.Int32, logId);
 
@@ -125,6 +129,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public LogItem UpdateLogItem(int logId, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport)
         {
+            logger.Info("DAL: Updating log with ID: " + logId);
             DbCommand updateCommand = database.CreateCommand(SQL_UPDATE_LOG);
 
             database.DefineParameter(updateCommand, "@LogName", DbType.String, logName);

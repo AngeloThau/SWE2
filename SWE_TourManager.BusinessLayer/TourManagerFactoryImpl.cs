@@ -12,10 +12,12 @@ namespace SWE_TourManager.BusinessLayer
 {
     internal class TourManagerFactoryImpl : ITourManagerFactory
     {
-      
-        
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+
         public IEnumerable<TourItem> GetTourItems()
         {
+            logger.Info("BL: Getting Tour Items");
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
             return tourDAO.GetTourItems();
         }
@@ -23,7 +25,7 @@ namespace SWE_TourManager.BusinessLayer
         public IEnumerable<TourItem> SearchTours(string tourName, bool caseSensitive = false)
         {
             IEnumerable<TourItem> tourItem = GetTourItems();
-
+            logger.Info("BL:Searching Tours");
 
             if (caseSensitive)
             {
@@ -34,24 +36,28 @@ namespace SWE_TourManager.BusinessLayer
 
         public TourItem CreateTour(string name, string description, double distance, string start, string destination, string imgPath)
         {
+            logger.Info("BL: Creating Tour");
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
             return tourDAO.AddNewItem(name, description, distance, start, destination, imgPath);
         }
 
         public LogItem CreateLog(TourItem logTourItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport)
         {
+            logger.Info("BL: Creating Log");
             ILogDAO logDAO = DALFactory.CreateLogDAO();
             return logDAO.AddNewLogItem(logTourItem, logName, logDistance, logTime, logRating, logSpeed, logVerUp, logVerDown, logDiff, logDate, logReport);
         }
 
         public IEnumerable<LogItem> GetLogForTourItem(TourItem tour)
         {
+            logger.Info("BL: Getting Logs for Tour");
             ILogDAO logDAO = DALFactory.CreateLogDAO();
             return logDAO.GetLogForTourItem(tour);
         }
 
         public IEnumerable<LogItem> SearchLogs(TourItem tour, string logName, bool caseSensitive = false)
         {
+            logger.Info("BL: Searching Logs");
             IEnumerable<LogItem> logItem = GetLogForTourItem(tour);
 
             if (caseSensitive)
@@ -63,12 +69,14 @@ namespace SWE_TourManager.BusinessLayer
 
         public TourItem ModifyTour(string name, string description, int id)
         {
+            logger.Info("BL: Modifying Tour");
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
             return tourDAO.ModifyTourItem(name, description, id);
         }
 
         public int DeleteTour(TourItem tour)
         {
+            logger.Info("BL: Deleting Tour");
             ILogDAO logDAO = DALFactory.CreateLogDAO();
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
 
@@ -78,6 +86,7 @@ namespace SWE_TourManager.BusinessLayer
 
         public TourItem ImportTour(string tourName)
         {
+            logger.Info("BL: Importing Tour");
             TourFileHandler tourFileHandler = new TourFileHandler();
             string [] tourString = tourFileHandler.GetImportTourString(tourName);
 
@@ -86,24 +95,28 @@ namespace SWE_TourManager.BusinessLayer
 
         public void ExportTour(TourItem tour)
         {
+            logger.Info("BL: Exporting Tour");
             TourFileHandler tourFileHandler = new TourFileHandler();
             tourFileHandler.ExportTour(tour);
         }
 
         public LogItem ModifyLog(LogItem logItem, string logName, double logDistance, int logTime, int logRating, int logSpeed, int logVerUp, int logVerDown, int logDiff, DateTime logDate, string logReport)
         {
+            logger.Info("BL: Modifying Log");
             ILogDAO logDAO = DALFactory.CreateLogDAO();
             return logDAO.UpdateLogItem(logItem.Id, logName, logDistance, logTime, logRating, logSpeed, logVerUp, logVerDown, logDiff, logDate, logReport);
         }
 
         public int DeleteLog(LogItem log)
         {
+            logger.Info("BL: Deleting Log");
             ILogDAO logDAO = DALFactory.CreateLogDAO();
             return logDAO.DeleteLogItem(log.Id);
         }
 
         public int PrintTour(TourItem tour)
         {
+            logger.Info("BL: Print Tour");
             TourFileHandler fileHandler = new TourFileHandler();
             List<LogItem> logItems = GetLogForTourItem(tour).ToList();
             return fileHandler.PrintTour(tour, logItems);
@@ -111,7 +124,9 @@ namespace SWE_TourManager.BusinessLayer
 
         public string summarizeReport()
         {
-             string report;
+            logger.Info("BL: Summarize Report");
+
+            string report;
             int totalTime = 0;
             double totalDistance = 0;
 

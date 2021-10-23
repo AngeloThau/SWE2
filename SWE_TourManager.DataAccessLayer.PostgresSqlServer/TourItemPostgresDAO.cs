@@ -13,6 +13,8 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 {
     public class TourItemPostgresDAO : ITourDAO
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private IDatabase database;
 
         private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Tours\" WHERE \"TourId\"= @Id;";
@@ -33,6 +35,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public TourItem AddNewItem(string name, string description, double distance, string start, string destination, string imgPath)
         {
+            logger.Info("DAL: Adding new Tour");
             DbCommand instertCommand = database.CreateCommand(SQL_INSERT_NEW_TOUR);
             database.DefineParameter(instertCommand, "@Name", DbType.String, name);
             database.DefineParameter(instertCommand, "@Description", DbType.String, description);
@@ -47,6 +50,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public TourItem FindById(int tourId)
         {
+            logger.Info("DAL: Finding Tour with ID: " + tourId);
             DbCommand findCommand = database.CreateCommand(SQL_FIND_BY_ID);
             database.DefineParameter(findCommand, "@Id", DbType.Int32, tourId);
 
@@ -56,6 +60,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public IEnumerable<TourItem> GetTourItems()
         {
+            logger.Info("DAL: Getting all Tours");
             DbCommand tourCommand = database.CreateCommand(SQL_GET_ALL_TOURS);
 
             
@@ -64,6 +69,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         private IEnumerable<TourItem> QueryTourItemsFromDatabase(DbCommand command)
         {
+            logger.Info("DAL: Returning Tours as IEnumerable ");
             List<TourItem> tourItemList = new List<TourItem>();
 
             using (IDataReader reader = database.ExecuteReader(command))
@@ -79,6 +85,8 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public TourItem ModifyTourItem(string name, string description, int id)
         {
+            logger.Info("DAL: Modifying Tour with ID: " + id);
+
             DbCommand updateCommand = database.CreateCommand(SQL_UPDATE_TOUR);
             
             database.DefineParameter(updateCommand, "@Name", DbType.String, name);
@@ -91,6 +99,7 @@ namespace SWE_TourManager.DataAccessLayer.PostgresSqlServer
 
         public int DeleteTourItem(int tourId)
         {
+            logger.Info("DAL: deleting Tour with ID: " + tourId);
 
             DbCommand deleteCommand = database.CreateCommand(SQL_DELETE);
             database.DefineParameter(deleteCommand, "@Id", DbType.Int32, tourId);
