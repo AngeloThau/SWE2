@@ -6,7 +6,7 @@
         xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels" d:DataContext="{d:DesignInstance Type=ViewModels:ImportTourVM}"
         xmlns:local="clr-namespace:SWE_TourManager.Views"
         mc:Ignorable="d"
-        Title="ImportTour" Height="75" Width="350">
+        Title="ImportTour" Height="90" Width="350">
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>

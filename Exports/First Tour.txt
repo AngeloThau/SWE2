@@ -1,6 +1,6 @@
 First Tour
-First Tour added through WPFApp (also modified)
-186,491
+The very First Tour
+20,327
 Wien
-Salzburg
+Wienerwald
 C:\Users\Angelo Raffael Thau\Desktop\Projekte\SWE\SWE2\Img\First Tour.png
