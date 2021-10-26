@@ -6,7 +6,7 @@
         xmlns:ViewModels ="clr-namespace:SWE_TourManager.ViewModels" d:DataContext="{d:DesignInstance Type=ViewModels:ModifyTourVM}"
         xmlns:local="clr-namespace:SWE_TourManager.Views" 
         mc:Ignorable="d"
-        Title="ModifyTour" Height="450" Width="800">
+        Title="ModifyTour" Height="150" Width="800">
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>

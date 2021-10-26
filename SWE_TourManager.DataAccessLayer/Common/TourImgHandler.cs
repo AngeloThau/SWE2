@@ -1,4 +1,6 @@
-﻿using SWE_TourManager.Models;
+﻿using iText.Layout.Element;
+using iText.Layout.Properties;
+using SWE_TourManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -37,6 +39,15 @@ namespace SWE_TourManager.DataAccessLayer
             {
                 client.DownloadFile(finalUrl, imgPath);
             }
+        }
+
+        public Image GetTourImage(string tourname)
+        {
+            string imgPath = imgFolderPath + "\\" + tourname + ".png";
+            Image img = new Image(iText.IO.Image.ImageDataFactory
+                .Create(imgPath))
+                .SetTextAlignment(TextAlignment.CENTER);
+            return img;
         }
     }
 }

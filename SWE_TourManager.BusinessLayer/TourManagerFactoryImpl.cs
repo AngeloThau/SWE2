@@ -139,7 +139,10 @@ namespace SWE_TourManager.BusinessLayer
                 }
             }
 
-            report = "Summarize Report: \n Total Time over All Logs: " + totalTime.ToString() + "\n Total Distance over all Logs: " + totalDistance.ToString();
+            TourFileHandler fileHandler = new TourFileHandler();
+            fileHandler.SummarizeReport(totalTime, totalDistance); 
+
+            report = "Report has been Generated!";
             return report;
         }
     }

@@ -135,12 +135,12 @@ namespace SWE_TourManager.ViewModels
                 MessageBox.Show("Please Use a different Tour Name");
                 return;
             }
-            else if (!validator.IsAlphabetOrNumber(NewTourStart))
+            else if (!validator.IsAllowedInput(NewTourStart))
             {
                 MessageBox.Show("Input at Start not allowed");
                 return;
             }
-            else if (!validator.IsAlphabetOrNumber(NewTourDestination))
+            else if (!validator.IsAllowedInput(NewTourDestination))
             {
                 MessageBox.Show("Input at Destination not allowed");
                 return;
